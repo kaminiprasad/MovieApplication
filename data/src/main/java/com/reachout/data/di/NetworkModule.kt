@@ -1,4 +1,4 @@
-package com.reachout.app.animal.presentation.di
+package com.reachout.data.di
 
 import com.reachout.data.api.ApiService
 import com.reachout.data.repository.RepositoryImpl
@@ -6,6 +6,10 @@ import com.reachout.data.repository.datasource.RemoteDataSource
 import com.reachout.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.reachout.data.util.Constants
 import com.reachout.data.util.ReqInterceptor
+import com.reachout.domain.repository.Repository
+import com.reachout.domain.usecase.GetPopularMovieUseCaseImpl
+import com.reachout.domain.usecase.MovieDetailsUseCaseImpl
+import com.reachout.domain.usecase.artist.MovieArtistUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -97,7 +101,6 @@ class NetworkModule {
     @Provides
     fun provideRemoteSource(apiService: ApiService) = RemoteDataSourceImpl(apiService)
 
-
     @Provides
     fun provideRepository(
         ioDispatcher: CoroutineDispatcher,
@@ -106,4 +109,19 @@ class NetworkModule {
         dispatcher = ioDispatcher,
         remoteDataSource = remoteDataSource
     )
+
+    @Provides
+    fun provideMovieUseCase(repository: Repository): GetPopularMovieUseCaseImpl {
+        return GetPopularMovieUseCaseImpl(repository)
+    }
+
+    @Provides
+    fun provideMovieDetailsUseCase(repository: Repository): MovieDetailsUseCaseImpl {
+        return MovieDetailsUseCaseImpl(repository)
+    }
+
+    @Provides
+    fun provideMovieArtistUseCase(repository: Repository): MovieArtistUseCaseImpl {
+        return MovieArtistUseCaseImpl(repository)
+    }
 }
