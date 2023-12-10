@@ -4,6 +4,8 @@
     <bytecodeTargetLevel target="1.7">
       <module name="CAKingdom.app" target="11" />
       <module name="CAKingdom.data" target="11" />
+      <module name="Movie_App.app" target="11" />
+      <module name="Movie_App.data" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

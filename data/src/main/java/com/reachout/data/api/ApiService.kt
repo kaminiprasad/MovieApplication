@@ -1,21 +1,18 @@
 package com.reachout.data.api
 
-import com.reachout.data.model.Animal
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import retrofit2.Response
+import com.reachout.data.model.MovieDetailDto
+import com.reachout.data.model.PopularMoviesDto
+import com.reachout.data.model.artist.ArtistDto
 import retrofit2.http.*
 
+
 interface ApiService {
-    @GET("animals/rand/{id}")
-    suspend fun getAnimalList(@Path("id") number: Int): List<Animal>
+    @GET("movie/popular")
+    suspend fun getPopularMovies(): PopularMoviesDto
 
-    @GET("books/v1/volumes")
-    suspend fun getBooks(@Query("q") author: String): Response<Animal>
+    @GET("movie/{id}")
+    suspend fun getMovieById(@Path("id") id: Int): MovieDetailDto
 
-    @POST("sdsg/Question")
-    suspend fun createRequestBodyData(@Body requestBody: RequestBody): ResponseBody
-
-    @GET("/Request/{requestId}")
-    suspend fun getUnifiedData(@Path("requestId") requestId: String): Response<ResponseBody>
+    @GET("movie/{movieId}/credits")
+    suspend fun getMovieCredit(@Path("movieId") movieId: Int): ArtistDto
 }
