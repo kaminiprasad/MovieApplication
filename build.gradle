@@ -28,9 +28,7 @@ task clean(type: Delete) {
 
 ext {
 
-//    compose_version = '1.0.5'
     accompanist_version = '0.21.2-beta'
-//    kotlin_version = '1.5.31'
     hilt_version = "2.28-alpha"
 
     /* sdk versions */

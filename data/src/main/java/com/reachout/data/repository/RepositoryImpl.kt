@@ -15,7 +15,6 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getPopularMovies() = repoFlow {
-
         remoteDataSource.getPopularMovies().results.map {
             it
         }.map { movieDto ->
@@ -32,6 +31,7 @@ class RepositoryImpl @Inject constructor(
     }.flowOn(dispatcher)
 
     override suspend fun getMovieById(id: Int) = repoFlow {
+        println("CleanArch --- Repo [18] ${dispatcher.key}")
         remoteDataSource.getMovieById(id).asDomain()
     }.flowOn(dispatcher)
 

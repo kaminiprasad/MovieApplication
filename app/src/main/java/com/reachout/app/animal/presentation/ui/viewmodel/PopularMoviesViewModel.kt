@@ -1,16 +1,16 @@
 package com.reachout.app.animal.presentation.ui.viewmodel
 
 import androidx.annotation.VisibleForTesting
-import com.reachout.domain.extension.Result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reachout.domain.entity.Movie
+import com.reachout.domain.extension.Result
 import com.reachout.domain.usecase.GetPopularMovieUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

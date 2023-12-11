@@ -5,9 +5,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -26,9 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.reachout.app.R
+import com.reachout.app.animal.presentation.ui.compose.CircularProgressBar
 import com.reachout.app.animal.presentation.ui.theme.ratingStarColor
 import com.reachout.app.animal.presentation.ui.util.Constants.IMAGE_URL
-import com.reachout.app.animal.presentation.ui.compose.CircularProgressBar
 import com.reachout.app.animal.presentation.ui.util.roundOff
 import com.reachout.app.animal.presentation.ui.viewmodel.MovieDetailViewModel
 

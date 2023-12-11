@@ -16,6 +16,7 @@ class RemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getMovieById(id: Int): MovieDetailDto {
+        println("CleanArch --- DataSource [15]")
         return apiService.getMovieById(id)
     }
 

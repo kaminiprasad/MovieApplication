@@ -1,10 +1,8 @@
 package com.reachout.domain.usecase.artist
 
-import com.reachout.domain.entity.MovieDetail
 import com.reachout.domain.entity.artist.Artist
 import com.reachout.domain.extension.Result
 import com.reachout.domain.repository.Repository
-import com.reachout.domain.usecase.MovieDetailsUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

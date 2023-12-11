@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.reachout.app.animal.presentation.ui.homescreen.HomeScreen
 import com.reachout.app.animal.presentation.ui.detailsscreen.MovieDetailScreen
+import com.reachout.app.animal.presentation.ui.homescreen.HomeScreen
 
 @ExperimentalFoundationApi
 @Composable
