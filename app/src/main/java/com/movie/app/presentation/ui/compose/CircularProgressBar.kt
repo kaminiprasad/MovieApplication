@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.compose
+package com.movie.app.presentation.ui.compose
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

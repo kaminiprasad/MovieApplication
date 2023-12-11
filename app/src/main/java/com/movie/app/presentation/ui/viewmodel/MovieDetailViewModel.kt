@@ -1,9 +1,9 @@
-package com.movie.app.animal.presentation.ui.viewmodel
+package com.movie.app.presentation.ui.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.movie.app.animal.presentation.ui.compose.MovieDetailState
+import com.movie.app.presentation.ui.compose.MovieDetailState
 import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.MovieDetailsUseCaseImpl

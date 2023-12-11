@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.compose
+package com.movie.app.presentation.ui.compose
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.movie.app.animal.presentation.ui.viewmodel.PopularMoviesViewModel
+import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
 
 @Composable
 fun ErrorComponent(

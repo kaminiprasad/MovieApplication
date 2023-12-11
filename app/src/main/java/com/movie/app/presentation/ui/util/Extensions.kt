@@ -1,7 +1,7 @@
-package com.movie.app.animal.presentation.ui.util
+package com.movie.app.presentation.ui.util
 
 import androidx.navigation.NavBackStackEntry
-import com.movie.app.animal.presentation.navigation.Screen
+import com.movie.app.presentation.navigation.Screen
 import java.math.RoundingMode
 import java.text.DecimalFormat
 

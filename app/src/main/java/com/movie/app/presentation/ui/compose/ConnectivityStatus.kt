@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.compose
+package com.movie.app.presentation.ui.compose
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
@@ -12,9 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.movie.app.animal.presentation.ui.theme.green
-import com.movie.app.animal.presentation.ui.theme.red
-import com.movie.app.animal.presentation.ui.util.ConnectionState
+import com.movie.app.presentation.ui.theme.green
+import com.movie.app.presentation.ui.theme.red
+import com.movie.app.presentation.ui.util.ConnectionState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 

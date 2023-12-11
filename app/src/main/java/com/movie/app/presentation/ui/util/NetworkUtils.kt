@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.util
+package com.movie.app.presentation.ui.util
 
 import android.content.Context
 import android.net.ConnectivityManager

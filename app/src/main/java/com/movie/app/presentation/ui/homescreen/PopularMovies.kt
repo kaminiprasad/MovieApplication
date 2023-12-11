@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.homescreen
+package com.movie.app.presentation.ui.homescreen
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.movie.app.R
-import com.movie.app.animal.presentation.ui.theme.ratingStarColor
-import com.movie.app.animal.presentation.ui.util.Constants
-import com.movie.app.animal.presentation.ui.util.roundOff
+import com.movie.app.presentation.ui.theme.ratingStarColor
+import com.movie.app.presentation.ui.util.Constants
+import com.movie.app.presentation.ui.util.roundOff
 import com.movie.domain.entity.Movie
 
 @Composable

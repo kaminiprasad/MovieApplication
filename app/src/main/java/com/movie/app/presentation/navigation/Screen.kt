@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.navigation
+package com.movie.app.presentation.navigation
 
 sealed class Screen(val route: String) {
     object Home : Screen(route = "home_screen")

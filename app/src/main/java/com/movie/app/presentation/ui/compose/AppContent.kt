@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.compose
+package com.movie.app.presentation.ui.compose
 
 import com.movie.app.R
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.movie.app.animal.presentation.navigation.NavGraphs
-import com.movie.app.animal.presentation.ui.util.isMovieDetailPage
+import com.movie.app.presentation.navigation.NavGraphs
+import com.movie.app.presentation.ui.util.isMovieDetailPage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

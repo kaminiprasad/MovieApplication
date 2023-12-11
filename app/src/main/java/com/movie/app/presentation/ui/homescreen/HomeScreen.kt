@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.homescreen
+package com.movie.app.presentation.ui.homescreen
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
@@ -15,12 +15,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.movie.app.animal.presentation.navigation.Screen
-import com.movie.app.animal.presentation.ui.compose.CircularProgressBar
-import com.movie.app.animal.presentation.ui.compose.ConnectivityStatus
-import com.movie.app.animal.presentation.ui.compose.ErrorComponent
-import com.movie.app.animal.presentation.ui.util.connectivityState
-import com.movie.app.animal.presentation.ui.viewmodel.PopularMoviesViewModel
+import com.movie.app.presentation.navigation.Screen
+import com.movie.app.presentation.ui.compose.CircularProgressBar
+import com.movie.app.presentation.ui.compose.ConnectivityStatus
+import com.movie.app.presentation.ui.compose.ErrorComponent
+import com.movie.app.presentation.ui.util.connectivityState
+import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
 
 @OptIn(ExperimentalAnimationApi::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 @Composable

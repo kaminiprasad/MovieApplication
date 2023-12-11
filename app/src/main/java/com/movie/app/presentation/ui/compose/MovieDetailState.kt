@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.compose
+package com.movie.app.presentation.ui.compose
 
 import com.movie.domain.entity.MovieDetail
 

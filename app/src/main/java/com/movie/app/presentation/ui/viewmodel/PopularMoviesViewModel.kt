@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.viewmodel
+package com.movie.app.presentation.ui.viewmodel
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.theme
+package com.movie.app.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

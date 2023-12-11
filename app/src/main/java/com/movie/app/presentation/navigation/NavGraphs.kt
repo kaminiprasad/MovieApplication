@@ -1,12 +1,12 @@
-package com.movie.app.animal.presentation.navigation
+package com.movie.app.presentation.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.movie.app.animal.presentation.ui.detailsscreen.MovieDetailScreen
-import com.movie.app.animal.presentation.ui.homescreen.HomeScreen
+import com.movie.app.presentation.ui.detailsscreen.MovieDetailScreen
+import com.movie.app.presentation.ui.homescreen.HomeScreen
 
 @ExperimentalFoundationApi
 @Composable

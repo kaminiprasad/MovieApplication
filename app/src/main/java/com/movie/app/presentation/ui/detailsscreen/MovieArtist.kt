@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.detailsscreen
+package com.movie.app.presentation.ui.detailsscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.movie.app.R
-import com.movie.app.animal.presentation.ui.util.Constants.PROFILE_PATH_URL
+import com.movie.app.presentation.ui.util.Constants.PROFILE_PATH_URL
 import com.movie.domain.entity.artist.Cast
 
 @Composable

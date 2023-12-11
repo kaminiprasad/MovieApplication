@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.util
+package com.movie.app.presentation.ui.util
 
 object Constants {
     const val IMAGE_URL = "https://image.tmdb.org/t/p/original/"

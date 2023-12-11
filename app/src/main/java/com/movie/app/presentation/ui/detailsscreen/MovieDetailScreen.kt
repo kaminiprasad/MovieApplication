@@ -1,4 +1,4 @@
-package com.movie.app.animal.presentation.ui.detailsscreen
+package com.movie.app.presentation.ui.detailsscreen
 
 
 import com.movie.app.R
@@ -32,11 +32,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
-import com.movie.app.animal.presentation.ui.compose.CircularProgressBar
-import com.movie.app.animal.presentation.ui.theme.ratingStarColor
-import com.movie.app.animal.presentation.ui.util.Constants.IMAGE_URL
-import com.movie.app.animal.presentation.ui.util.roundOff
-import com.movie.app.animal.presentation.ui.viewmodel.MovieDetailViewModel
+import com.movie.app.presentation.ui.compose.CircularProgressBar
+import com.movie.app.presentation.ui.theme.ratingStarColor
+import com.movie.app.presentation.ui.util.Constants.IMAGE_URL
+import com.movie.app.presentation.ui.util.roundOff
+import com.movie.app.presentation.ui.viewmodel.MovieDetailViewModel
 
 @Composable
 fun MovieDetailScreen(
