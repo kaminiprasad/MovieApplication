@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movie.domain.entity.Movie
 import com.movie.domain.extension.Result
-import com.movie.domain.usecase.GetPopularMovieUseCaseImpl
+import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

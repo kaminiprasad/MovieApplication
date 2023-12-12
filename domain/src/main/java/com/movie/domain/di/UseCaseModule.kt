@@ -1,9 +1,9 @@
 package com.movie.domain.di
 
-import com.movie.domain.usecase.GetPopularMovieUseCase
-import com.movie.domain.usecase.GetPopularMovieUseCaseImpl
-import com.movie.domain.usecase.MovieDetailsUseCase
-import com.movie.domain.usecase.MovieDetailsUseCaseImpl
+import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCase
+import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
 import com.movie.domain.usecase.artist.MovieArtistUseCase
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
 import dagger.Binds

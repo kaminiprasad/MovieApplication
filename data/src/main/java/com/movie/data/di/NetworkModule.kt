@@ -5,10 +5,10 @@ import com.movie.data.repository.RepositoryImpl
 import com.movie.data.repository.datasource.RemoteDataSource
 import com.movie.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.movie.data.util.Constants
-import com.movie.data.util.ReqInterceptor
+import com.movie.data.util.RequestInterceptor
 import com.movie.domain.repository.Repository
-import com.movie.domain.usecase.GetPopularMovieUseCaseImpl
-import com.movie.domain.usecase.MovieDetailsUseCaseImpl
+import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -16,10 +16,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,38 +25,14 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-    @Provides
-    fun provideOkhttpInterceptor(): Interceptor {
-        return Interceptor { chain: Interceptor.Chain ->
-            val original: Request = chain.request()
-            val requestBuilder: Request.Builder = original.newBuilder()
-//                .addHeader("Accept", "Application/JSON")
-            val request: Request = requestBuilder.build()
-            var response: Response? = null
-            var isSuccess = false
-            var tryCount = 0
-            while (!isSuccess && tryCount < 3) {
-                try {
-                    response = chain.proceed(request)
-                    isSuccess = response.isSuccessful
-                } catch (e: java.lang.Exception) {
-                    println("Request is not successful - $tryCount")
-                } finally {
-                    tryCount++
-                }
-            }
-            response!!
-
-        }
-    }
 
     @Provides
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        interceptor: Interceptor
+        requestInterceptor: RequestInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(ReqInterceptor())
+            .addInterceptor(requestInterceptor)
             .addInterceptor(loggingInterceptor)
             .callTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)

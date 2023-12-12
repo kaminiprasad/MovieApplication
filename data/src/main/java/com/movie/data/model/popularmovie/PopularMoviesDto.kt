@@ -1,6 +1,7 @@
-package com.movie.data.model
+package com.movie.data.model.popularmovie
 
 import com.google.gson.annotations.SerializedName
+import com.movie.data.model.moviedetail.MovieDto
 
 data class PopularMoviesDto(
     @SerializedName("page")

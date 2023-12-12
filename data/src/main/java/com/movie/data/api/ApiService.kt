@@ -1,7 +1,7 @@
 package com.movie.data.api
 
-import com.movie.data.model.MovieDetailDto
-import com.movie.data.model.PopularMoviesDto
+import com.movie.data.model.moviedetail.MovieDetailDto
+import com.movie.data.model.popularmovie.PopularMoviesDto
 import com.movie.data.model.artist.ArtistDto
 import retrofit2.http.*
 

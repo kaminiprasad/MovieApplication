@@ -1,4 +1,4 @@
-package com.movie.domain.usecase
+package com.movie.domain.usecase.popularmovie
 
 import com.movie.domain.entity.Movie
 import com.movie.domain.extension.Result
