@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movie.domain.entity.movie.Movie
 import com.movie.domain.extension.Result
-import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
+import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
-    private val movieUseCase: GetPopularMovieUseCaseImpl,
+    private val movieUseCase: PopularMovieUseCaseImpl,
 ) : ViewModel() {
 
     init {

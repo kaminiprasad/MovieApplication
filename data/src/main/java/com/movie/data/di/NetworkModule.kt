@@ -9,7 +9,7 @@ import com.movie.data.util.RequestInterceptor
 import com.movie.domain.repository.Repository
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
 import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
-import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
+import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -83,8 +83,8 @@ class NetworkModule {
     )
 
     @Provides
-    fun provideMovieUseCase(repository: Repository): GetPopularMovieUseCaseImpl {
-        return GetPopularMovieUseCaseImpl(repository)
+    fun provideMovieUseCase(repository: Repository): PopularMovieUseCaseImpl {
+        return PopularMovieUseCaseImpl(repository)
     }
 
     @Provides

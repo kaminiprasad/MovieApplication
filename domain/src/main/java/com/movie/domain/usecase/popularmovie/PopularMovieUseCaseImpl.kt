@@ -6,9 +6,9 @@ import com.movie.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetPopularMovieUseCaseImpl @Inject constructor(
+class PopularMovieUseCaseImpl @Inject constructor(
     private val repository: Repository,
-) : GetPopularMovieUseCase {
+) : PopularMovieUseCase {
     override suspend fun invoke(): Flow<Result<List<Movie>>> {
         return repository.getPopularMovies()
     }

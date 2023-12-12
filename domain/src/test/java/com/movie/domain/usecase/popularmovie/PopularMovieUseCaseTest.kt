@@ -8,14 +8,14 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-internal class GetPopularMovieUseCaseTest {
-    private lateinit var popularMoviesUseCase: GetPopularMovieUseCaseImpl
+internal class PopularMovieUseCaseTest {
+    private lateinit var popularMoviesUseCase: PopularMovieUseCaseImpl
     private lateinit var movieRepository: FakeMovieRepository
 
     @Before
     fun setUp() {
         movieRepository = FakeMovieRepository()
-        popularMoviesUseCase = GetPopularMovieUseCaseImpl(movieRepository)
+        popularMoviesUseCase = PopularMovieUseCaseImpl(movieRepository)
     }
 
     @Test
