@@ -1,10 +1,10 @@
 package com.movie.data.mapper
 
+import android.util.Log
 import com.movie.domain.extension.Result
 import com.movie.domain.util.Domain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.transform
 
 interface Dto {
     fun asDomain(): Domain
@@ -17,11 +17,7 @@ inline fun <T> repoFlow(
         val repoResult = block()
         emit(Result.Success(repoResult))
     } catch (e: Exception) {
-        println("Interceptor [19]: ${e.message}")
+        Log.e("Exception", "Exception while fetching data : ${e.stackTrace}")
         emit(Result.Error(e.message ?: "Unknown error"))
     }
-}
-
-fun Flow<Dto>.toDomain(): Flow<Domain> = transform { value ->
-    return@transform emit(value.asDomain())
 }
