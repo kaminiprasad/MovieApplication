@@ -6,14 +6,14 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class RequestInterceptor @Inject constructor(): Interceptor {
+class RequestInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val newUrl = originalRequest.url
             .newBuilder()
             .addQueryParameter(
                 API_KEY,
-                MOVIE_API_KEY
+                MOVIE_API_KEY,
             )
             .build()
         val request = originalRequest.newBuilder()

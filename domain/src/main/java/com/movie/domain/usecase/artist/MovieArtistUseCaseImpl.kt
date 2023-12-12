@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MovieArtistUseCaseImpl @Inject constructor(
-    private val repository: Repository
+    private val repository: Repository,
 ) : MovieArtistUseCase {
     override suspend fun invoke(movieId: Int): Flow<Result<Artist>> {
         return repository.getMovieCredit(movieId)

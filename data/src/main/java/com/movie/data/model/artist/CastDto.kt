@@ -1,6 +1,5 @@
 package com.movie.data.model.artist
 
-
 import com.google.gson.annotations.SerializedName
 import com.movie.data.mapper.Dto
 import com.movie.data.util.notNull
@@ -30,7 +29,7 @@ data class CastDto(
     @SerializedName("popularity")
     val popularity: Double,
     @SerializedName("profile_path")
-    val profilePath: String?
+    val profilePath: String?,
 ) : Dto {
     override fun asDomain() = Cast(
         adult,
@@ -44,6 +43,6 @@ data class CastDto(
         order,
         originalName,
         popularity,
-        profilePath.notNull()
+        profilePath.notNull(),
     )
 }

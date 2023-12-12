@@ -13,5 +13,5 @@ fun Double.roundOff(): String {
 
 fun NavBackStackEntry?.isMovieDetailPage() =
     this?.destination?.route?.substringBeforeLast(
-        "/"
+        "/",
     ).equals(Screen.MovieItemDetail.route)

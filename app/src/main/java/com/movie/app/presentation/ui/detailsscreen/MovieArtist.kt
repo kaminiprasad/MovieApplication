@@ -32,44 +32,48 @@ fun ArtistAndCrew(cast: List<Cast>) {
                 .padding(10.dp),
             text = stringResource(R.string.cast),
             fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
         )
         LazyRow {
-            items(cast, itemContent = { item ->
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = rememberImagePainter(
-                            data = PROFILE_PATH_URL.plus(item.profilePath),
-                            builder = {
-                                // Optional: Add image transformations
-                                placeholder(R.drawable.ic_launcher_foreground)
-                            }
-                        ),
-                        contentDescription = item.name,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .height(240.dp)
-                            .width(180.dp)
-                            .padding(
+            items(
+                cast,
+                itemContent = { item ->
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(
+                            painter = rememberImagePainter(
+                                data = PROFILE_PATH_URL.plus(item.profilePath),
+                                builder = {
+                                    // Optional: Add image transformations
+                                    placeholder(R.drawable.ic_launcher_foreground)
+                                },
+                            ),
+                            contentDescription = item.name,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .height(240.dp)
+                                .width(180.dp)
+                                .padding(
+                                    end = 10.dp,
+                                    top = 5.dp,
+                                    bottom = 5.dp,
+                                )
+                                .clip(shape = MaterialTheme.shapes.large)
+                                .clickable(
+                                    enabled = false,
+                                    onClick = {},
+                                ),
+                        )
+                        Text(
+                            text = item.name,
+                            modifier = Modifier.padding(
                                 end = 10.dp,
                                 top = 5.dp,
-                                bottom = 5.dp
-                            )
-                            .clip(shape = MaterialTheme.shapes.large)
-                            .clickable(enabled = false,
-                                onClick = {})
-                    )
-                    Text(
-                        text = item.name,
-                        modifier = Modifier.padding(
-                            end = 10.dp,
-                            top = 5.dp,
-                            bottom = 5.dp
+                                bottom = 5.dp,
+                            ),
                         )
-                    )
-                }
-
-            })
+                    }
+                },
+            )
         }
     }
 }

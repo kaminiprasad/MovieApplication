@@ -13,11 +13,10 @@ import com.movie.app.presentation.ui.homescreen.HomeScreen
 fun NavGraphs(navHostController: NavHostController) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Home.route,
     ) {
-
         composable(
-            route = Screen.Home.route
+            route = Screen.Home.route,
         ) {
             HomeScreen(navController = navHostController)
         }

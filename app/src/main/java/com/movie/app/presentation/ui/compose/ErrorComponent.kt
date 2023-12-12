@@ -15,7 +15,7 @@ import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
 
 @Composable
 fun ErrorComponent(
-    viewModel: PopularMoviesViewModel = hiltViewModel()
+    viewModel: PopularMoviesViewModel = hiltViewModel(),
 ) {
     val result = viewModel.movieState.collectAsState()
     val status = viewModel.loadingState.collectAsState()
@@ -27,7 +27,7 @@ fun ErrorComponent(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 color = Color.Red,
-                text = error.value
+                text = error.value,
             )
         }
     }

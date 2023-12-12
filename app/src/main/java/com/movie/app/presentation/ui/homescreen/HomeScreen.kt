@@ -26,9 +26,8 @@ import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: PopularMoviesViewModel = hiltViewModel()
+    viewModel: PopularMoviesViewModel = hiltViewModel(),
 ) {
-
     val result = viewModel.movieState.collectAsState()
     val status = viewModel.loadingState.collectAsState()
 
@@ -39,17 +38,17 @@ fun HomeScreen(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize(),
         ) {
             CircularProgressBar(
                 isDisplayed = status.value,
-                modifier = Modifier.testTag("progress_bar")
+                modifier = Modifier.testTag("progress_bar"),
             )
             ErrorComponent()
             val listState = rememberLazyListState()
             LazyColumn(
                 state = listState,
-                modifier = Modifier.testTag("popular-movie-screenTag")
+                modifier = Modifier.testTag("popular-movie-screenTag"),
             ) {
                 items(
                     items = result.value,
@@ -58,9 +57,9 @@ fun HomeScreen(
                             popular = item,
                             onClick = {
                                 navController.navigate(Screen.MovieItemDetail.route + "/${item.id}")
-                            }
+                            },
                         )
-                    }
+                    },
                 )
             }
             ConnectivityStatus(connection = state, onRefresh = { viewModel.refresh() })

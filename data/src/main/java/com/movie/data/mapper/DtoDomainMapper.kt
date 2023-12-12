@@ -1,7 +1,7 @@
 package com.movie.data.mapper
 
-import com.movie.domain.Domain
 import com.movie.domain.extension.Result
+import com.movie.domain.util.Domain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.transform

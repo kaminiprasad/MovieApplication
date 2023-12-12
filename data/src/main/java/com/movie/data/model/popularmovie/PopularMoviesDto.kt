@@ -11,5 +11,5 @@ data class PopularMoviesDto(
     @SerializedName("total_pages")
     val total_pages: Int,
     @SerializedName("total_results")
-    val total_results: Int
+    val total_results: Int,
 )

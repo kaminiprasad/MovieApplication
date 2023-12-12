@@ -1,7 +1,7 @@
 package com.movie.app.presentation.ui.homescreen
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.* // ktlint-disable no-wildcard-imports
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -27,12 +27,12 @@ import com.movie.app.R
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants
 import com.movie.app.presentation.ui.util.roundOff
-import com.movie.domain.entity.Movie
+import com.movie.domain.entity.movie.Movie
 
 @Composable
 fun PopularMoviesItem(
     popular: Movie,
-    onClick: (Movie) -> Unit
+    onClick: (Movie) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun PopularMoviesItem(
             .fillMaxWidth()
             .clickable {
                 onClick(popular)
-            }
+            },
     ) {
         Image(
             painter = rememberImagePainter(
@@ -48,7 +48,7 @@ fun PopularMoviesItem(
                 builder = {
                     // Optional: Add image transformations
                     placeholder(R.drawable.ic_launcher_foreground)
-                }
+                },
             ),
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -67,8 +67,8 @@ fun PopularMoviesItem(
                     style = SpanStyle(
                         color = Color.Gray,
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Light
-                    )
+                        fontWeight = FontWeight.Light,
+                    ),
                 ) {
                     append(" (${popular.title}) ")
                 }
@@ -78,11 +78,11 @@ fun PopularMoviesItem(
                 overflow = TextOverflow.Ellipsis,
                 text = annotatedString,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(start = 8.dp)
+                modifier = Modifier.padding(start = 8.dp),
             )
 
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Filled.Star,
@@ -91,18 +91,18 @@ fun PopularMoviesItem(
                     modifier = Modifier
                         .padding(
                             start = 8.dp,
-                            top = 12.dp
+                            top = 12.dp,
                         )
-                        .size(16.dp)
+                        .size(16.dp),
                 )
                 Text(
                     text = popular.voteAverage.roundOff().plus(" IMDb"),
                     modifier = Modifier.padding(
                         top = 12.dp,
-                        start = 4.dp
+                        start = 4.dp,
                     ),
                     fontSize = 16.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
             Row {
@@ -112,32 +112,19 @@ fun PopularMoviesItem(
                     modifier = Modifier
                         .padding(
                             start = 8.dp,
-                            top = 12.dp
+                            top = 12.dp,
                         )
-                        .size(24.dp)
+                        .size(24.dp),
                 )
                 Text(
                     text = popular.releaseDate,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(
                         top = 12.dp,
-                        start = 4.dp
-                    )
+                        start = 4.dp,
+                    ),
                 )
             }
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

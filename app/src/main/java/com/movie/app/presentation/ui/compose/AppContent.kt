@@ -1,8 +1,7 @@
 package com.movie.app.presentation.ui.compose
 
-import com.movie.app.R
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.material.*
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -11,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.movie.app.R
 import com.movie.app.presentation.navigation.NavGraphs
 import com.movie.app.presentation.ui.util.isMovieDetailPage
 
@@ -27,13 +27,15 @@ fun AppContent(navHostController: NavHostController) {
                 navigationIcon = if (navBackStackEntry.isMovieDetailPage()
                 ) {
                     {
-                        IconButton(onClick = {
-                            navHostController.navigateUp()
-                        }) {
+                        IconButton(
+                            onClick = {
+                                navHostController.navigateUp()
+                            },
+                        ) {
                             Icon(
                                 tint = Color.White,
                                 imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = Icons.Filled.ArrowBack.name
+                                contentDescription = Icons.Filled.ArrowBack.name,
                             )
                         }
                     }
@@ -50,9 +52,9 @@ fun AppContent(navHostController: NavHostController) {
                         color = Color.White,
                     )
                 },
-                backgroundColor = materialBlue700
+                backgroundColor = materialBlue700,
             )
         },
-        content = { NavGraphs(navHostController = navHostController) }
+        content = { NavGraphs(navHostController = navHostController) },
     )
 }

@@ -1,6 +1,5 @@
 package com.movie.data.model.artist
 
-
 import com.google.gson.annotations.SerializedName
 import com.movie.data.mapper.Dto
 import com.movie.data.util.notNull
@@ -14,25 +13,26 @@ data class ArtistDto(
     @SerializedName("crew")
     val crew: List<CrewDto>,
     @SerializedName("id")
-    val id: Int
+    val id: Int,
 ) : Dto {
     override fun asDomain() =
-        Artist(cast = cast.map { it }.map { castDto ->
-            Cast(
-                adult = castDto.adult,
-                castId = castDto.castId,
-                character = castDto.character,
-                creditId = castDto.creditId,
-                gender = castDto.gender,
-                id = castDto.id,
-                knownForDepartment = castDto.knownForDepartment,
-                name = castDto.name,
-                order = castDto.order,
-                originalName = castDto.originalName,
-                popularity = castDto.popularity,
-                profilePath = castDto.profilePath.notNull()
-            )
-        },
+        Artist(
+            cast = cast.map { it }.map { castDto ->
+                Cast(
+                    adult = castDto.adult,
+                    castId = castDto.castId,
+                    character = castDto.character,
+                    creditId = castDto.creditId,
+                    gender = castDto.gender,
+                    id = castDto.id,
+                    knownForDepartment = castDto.knownForDepartment,
+                    name = castDto.name,
+                    order = castDto.order,
+                    originalName = castDto.originalName,
+                    popularity = castDto.popularity,
+                    profilePath = castDto.profilePath.notNull(),
+                )
+            },
             crew = crew.map { it }
                 .map { crewDto ->
                     Crew(
@@ -46,10 +46,9 @@ data class ArtistDto(
                         name = crewDto.name,
                         originalName = crewDto.originalName,
                         popularity = crewDto.popularity,
-                        profilePath = crewDto.profilePath.notNull()
+                        profilePath = crewDto.profilePath.notNull(),
                     )
                 },
-            id = id
+            id = id,
         )
-
 }

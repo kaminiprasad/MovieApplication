@@ -7,9 +7,9 @@ import com.movie.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
 import com.movie.domain.repository.Repository
-import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
-import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
+import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +29,7 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        requestInterceptor: RequestInterceptor
+        requestInterceptor: RequestInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(requestInterceptor)
@@ -54,7 +54,7 @@ class NetworkModule {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
@@ -67,7 +67,6 @@ class NetworkModule {
     fun provideApiService(retrofit: Retrofit): ApiService =
         retrofit.create(ApiService::class.java)
 
-
     @Provides
     fun provideIoDispatcher() = Dispatchers.IO
 
@@ -77,10 +76,10 @@ class NetworkModule {
     @Provides
     fun provideRepository(
         ioDispatcher: CoroutineDispatcher,
-        remoteDataSource: RemoteDataSource
+        remoteDataSource: RemoteDataSource,
     ) = RepositoryImpl(
         dispatcher = ioDispatcher,
-        remoteDataSource = remoteDataSource
+        remoteDataSource = remoteDataSource,
     )
 
     @Provides

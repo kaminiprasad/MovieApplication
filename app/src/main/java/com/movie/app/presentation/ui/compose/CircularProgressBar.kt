@@ -17,10 +17,10 @@ fun CircularProgressBar(isDisplayed: Boolean, modifier: Modifier) {
             modifier = modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator(
-                color = MaterialTheme.colors.primary
+                color = MaterialTheme.colors.primary,
             )
         }
     }

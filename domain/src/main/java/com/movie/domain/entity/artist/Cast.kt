@@ -1,7 +1,6 @@
 package com.movie.domain.entity.artist
 
-
-import com.movie.domain.Domain
+import com.movie.domain.util.Domain
 
 data class Cast(
     val adult: Boolean,
@@ -15,5 +14,5 @@ data class Cast(
     val order: Int,
     val originalName: String,
     val popularity: Double,
-    val profilePath: String
+    val profilePath: String,
 ) : Domain

@@ -3,7 +3,7 @@ package com.movie.data.repository
 import com.movie.data.mapper.repoFlow
 import com.movie.data.repository.datasource.RemoteDataSource
 import com.movie.data.util.notNull
-import com.movie.domain.entity.Movie
+import com.movie.domain.entity.movie.Movie
 import com.movie.domain.repository.Repository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flowOn
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val dispatcher: CoroutineDispatcher,
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
 ) : Repository {
 
     override suspend fun getPopularMovies() = repoFlow {
@@ -25,13 +25,12 @@ class RepositoryImpl @Inject constructor(
                 backdropPath = movieDto.backdropPath,
                 posterUrl = movieDto.posterPath,
                 voteAverage = movieDto.voteAverage,
-                releaseDate = movieDto.releaseDate.notNull()
+                releaseDate = movieDto.releaseDate.notNull(),
             )
         }
     }.flowOn(dispatcher)
 
     override suspend fun getMovieById(id: Int) = repoFlow {
-        println("CleanArch --- Repo [18] ${dispatcher.key}")
         remoteDataSource.getMovieById(id).asDomain()
     }.flowOn(dispatcher)
 

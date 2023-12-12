@@ -1,9 +1,7 @@
 package com.movie.app.presentation.ui.detailsscreen
 
-
-import com.movie.app.R
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -32,6 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
+import com.movie.app.R
 import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants.IMAGE_URL
@@ -42,7 +41,6 @@ import com.movie.app.presentation.ui.viewmodel.MovieDetailViewModel
 fun MovieDetailScreen(
     movieDetailViewModel: MovieDetailViewModel = hiltViewModel(),
 ) {
-
     val progressBar = remember {
         mutableStateOf(false)
     }
@@ -52,7 +50,7 @@ fun MovieDetailScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         CircularProgressBar(
             isDisplayed = progressBar.value,
-            modifier = Modifier.testTag("progress_bar")
+            modifier = Modifier.testTag("progress_bar"),
         )
         movieDetail.value.movie?.let { it ->
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -62,7 +60,7 @@ fun MovieDetailScreen(
                         builder = {
                             // Optional: Add image transformations
                             placeholder(R.drawable.ic_launcher_foreground)
-                        }
+                        },
                     ),
                     contentDescription = it.originalTitle,
                     contentScale = ContentScale.Crop,
@@ -70,17 +68,17 @@ fun MovieDetailScreen(
                         .height(250.dp)
                         .padding(
                             start = 5.dp,
-                            end = 5.dp
+                            end = 5.dp,
                         )
-                        .clip(MaterialTheme.shapes.large)
+                        .clip(MaterialTheme.shapes.large),
                 )
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(
                             start = 15.dp,
-                            end = 15.dp
-                        )
+                            end = 15.dp,
+                        ),
                 ) {
                     Text(
                         text = it.title,
@@ -91,66 +89,72 @@ fun MovieDetailScreen(
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 2,
                         style = MaterialTheme.typography.h4,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(
                                 bottom = 10.dp,
-                                top = 10.dp
-                            )
+                                top = 10.dp,
+                            ),
                     ) {
                         Column(
                             modifier = Modifier.weight(1f),
                             verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            IconButton(enabled = false,
-                                onClick = {}) {
+                            IconButton(
+                                enabled = false,
+                                onClick = {},
+                            ) {
                                 Icon(
                                     tint = Color.Black,
                                     imageVector = Icons.Filled.Language,
-                                    contentDescription = Icons.Filled.Language.name
+                                    contentDescription = Icons.Filled.Language.name,
                                 )
                             }
                             Text(
                                 text = it.originalLanguage,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                         Column(
                             Modifier.weight(1f),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            IconButton(enabled = false,
-                                onClick = {}) {
+                            IconButton(
+                                enabled = false,
+                                onClick = {},
+                            ) {
                                 Icon(
                                     tint = ratingStarColor,
                                     imageVector = Icons.Filled.Star,
-                                    contentDescription = Icons.Filled.StarRate.name
+                                    contentDescription = Icons.Filled.StarRate.name,
                                 )
                             }
                             Text(
                                 text = it.voteAverage.roundOff(),
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                         Column(
                             Modifier.weight(1f),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            IconButton(enabled = false,
-                                onClick = {}) {
+                            IconButton(
+                                enabled = false,
+                                onClick = {},
+                            ) {
                                 Icon(
                                     tint = Color.Black,
                                     imageVector = Icons.Filled.DateRange,
-                                    contentDescription = Icons.Filled.DateRange.name
+                                    contentDescription = Icons.Filled.DateRange.name,
                                 )
                             }
                             Text(
                                 text = it.releaseDate,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                     }
@@ -160,11 +164,11 @@ fun MovieDetailScreen(
                             .padding(10.dp),
                         text = stringResource(R.string.description),
                         fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.h5
+                        style = MaterialTheme.typography.h5,
                     )
                     Text(
                         text = it.overview,
-                        modifier = Modifier.padding(10.dp)
+                        modifier = Modifier.padding(10.dp),
                     )
                     ArtistAndCrew(artist.value.cast)
                 }

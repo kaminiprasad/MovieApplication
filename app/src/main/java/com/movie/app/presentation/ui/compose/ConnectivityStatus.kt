@@ -1,11 +1,11 @@
 package com.movie.app.presentation.ui.compose
 
-import androidx.compose.animation.*
+import androidx.compose.animation.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.* // ktlint-disable no-wildcard-imports
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,7 +29,7 @@ fun ConnectivityStatus(connection: ConnectionState, onRefresh: () -> Unit) {
     AnimatedVisibility(
         visible = visibility,
         enter = expandVertically(),
-        exit = shrinkVertically()
+        exit = shrinkVertically(),
     ) {
         ConnectivityStatusBox(isConnected = isConnected)
     }
@@ -60,7 +60,7 @@ fun ConnectivityStatusBox(isConnected: Boolean) {
             .background(backgroundColor)
             .fillMaxWidth()
             .padding(8.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(painterResource(id = iconResource), "Connectivity Icon", tint = Color.White)

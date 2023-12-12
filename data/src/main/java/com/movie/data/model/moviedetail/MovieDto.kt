@@ -3,7 +3,7 @@ package com.movie.data.model.moviedetail
 import com.google.gson.annotations.SerializedName
 import com.movie.data.mapper.Dto
 import com.movie.data.util.notNull
-import com.movie.domain.entity.Movie
+import com.movie.domain.entity.movie.Movie
 
 data class MovieDto(
     @SerializedName("adult")
@@ -33,7 +33,7 @@ data class MovieDto(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 ) : Dto {
     override fun asDomain() = Movie(
         id = id,
@@ -42,6 +42,6 @@ data class MovieDto(
         backdropPath = backdropPath,
         posterUrl = posterPath,
         voteAverage = voteAverage,
-        releaseDate = releaseDate.notNull()
+        releaseDate = releaseDate.notNull(),
     )
 }

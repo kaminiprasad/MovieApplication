@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.movie.app.presentation.ui.compose.MovieDetailState
 import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
-import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,9 +19,8 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val movieDetails: MovieDetailsUseCaseImpl,
     private val movieArtist: MovieArtistUseCaseImpl,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-
 
     private val _movieState: MutableStateFlow<MovieDetailState> =
         MutableStateFlow(MovieDetailState())
@@ -48,14 +47,14 @@ class MovieDetailViewModel @Inject constructor(
         movieDetails(id = id).collectLatest {
             when (it) {
                 is Result.Loading -> {
-                        _loadingState.value = true
+                    _loadingState.value = true
                 }
                 is Result.Success -> {
-                        _loadingState.value = false
+                    _loadingState.value = false
                     _movieState.value = MovieDetailState(
                         movie = it.data,
                         isLoading = false,
-                        error = ""
+                        error = "",
                     )
                 }
                 is Result.Error -> {

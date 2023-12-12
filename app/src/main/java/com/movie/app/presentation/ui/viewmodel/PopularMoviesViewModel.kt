@@ -3,7 +3,7 @@ package com.movie.app.presentation.ui.viewmodel
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.movie.domain.entity.Movie
+import com.movie.domain.entity.movie.Movie
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.popularmovie.GetPopularMovieUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
-    private val movieUseCase: GetPopularMovieUseCaseImpl
-): ViewModel() {
+    private val movieUseCase: GetPopularMovieUseCaseImpl,
+) : ViewModel() {
 
     init {
         getMovieList()
@@ -34,7 +34,7 @@ class PopularMoviesViewModel @Inject constructor(
     @VisibleForTesting
     internal fun getMovieList() = viewModelScope.launch {
         movieUseCase().collectLatest {
-            when(it) {
+            when (it) {
                 is Result.Loading -> {
                     _loadingState.value = true
                 }

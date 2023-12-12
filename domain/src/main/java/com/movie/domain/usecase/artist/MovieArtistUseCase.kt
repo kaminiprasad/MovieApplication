@@ -5,5 +5,5 @@ import com.movie.domain.extension.Result
 import kotlinx.coroutines.flow.Flow
 
 interface MovieArtistUseCase {
-    suspend operator fun invoke(movieId : Int): Flow<Result<Artist>>
+    suspend operator fun invoke(movieId: Int): Flow<Result<Artist>>
 }
