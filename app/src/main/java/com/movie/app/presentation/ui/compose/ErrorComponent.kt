@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
+import com.movie.app.presentation.ui.viewmodel.popularmovie.PopularMoviesViewModel
 
 @Composable
 fun ErrorComponent(

@@ -1,8 +1,9 @@
-package com.movie.app.presentation.ui.viewmodel
+package com.movie.app.presentation.ui.viewmodel.popularmovie
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.movie.app.presentation.ui.util.CoroutineContextProvider
 import com.movie.domain.entity.movie.Movie
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
     private val movieUseCase: PopularMovieUseCaseImpl,
+    private val coroutineContextProvider: CoroutineContextProvider = CoroutineContextProvider()
 ) : ViewModel() {
 
     init {
@@ -32,7 +34,7 @@ class PopularMoviesViewModel @Inject constructor(
     val errorState: StateFlow<String> = _errorState
 
     @VisibleForTesting
-    internal fun getMovieList() = viewModelScope.launch {
+    internal fun getMovieList() = viewModelScope.launch(coroutineContextProvider.IO) {
         movieUseCase().collectLatest {
             when (it) {
                 is Result.Loading -> {

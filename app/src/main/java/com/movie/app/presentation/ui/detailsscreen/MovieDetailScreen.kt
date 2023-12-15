@@ -35,7 +35,7 @@ import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants.IMAGE_URL
 import com.movie.app.presentation.ui.util.roundOff
-import com.movie.app.presentation.ui.viewmodel.MovieDetailViewModel
+import com.movie.app.presentation.ui.viewmodel.moviedetail.MovieDetailViewModel
 
 @Composable
 fun MovieDetailScreen(

@@ -7,8 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
-internal class PopularMovieUseCaseTest {
+class PopularMovieUseCaseTest {
     private lateinit var popularMoviesUseCase: PopularMovieUseCaseImpl
     private lateinit var movieRepository: FakeMovieRepository
 

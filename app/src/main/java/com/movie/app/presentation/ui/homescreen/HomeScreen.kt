@@ -20,7 +20,7 @@ import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.compose.ConnectivityStatus
 import com.movie.app.presentation.ui.compose.ErrorComponent
 import com.movie.app.presentation.ui.util.connectivityState
-import com.movie.app.presentation.ui.viewmodel.PopularMoviesViewModel
+import com.movie.app.presentation.ui.viewmodel.popularmovie.PopularMoviesViewModel
 
 @OptIn(ExperimentalAnimationApi::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 @Composable

@@ -1,9 +1,10 @@
-package com.movie.app.presentation.ui.viewmodel
+package com.movie.app.presentation.ui.viewmodel.moviedetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movie.app.presentation.ui.compose.MovieDetailState
+import com.movie.app.presentation.ui.util.CoroutineContextProvider
 import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val movieDetails: MovieDetailsUseCaseImpl,
     private val movieArtist: MovieArtistUseCaseImpl,
+    private val contextProvider: CoroutineContextProvider,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -43,7 +45,7 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun getMovieById(id: Int) = viewModelScope.launch {
+    fun getMovieById(id: Int) = viewModelScope.launch(contextProvider.IO) {
         movieDetails(id = id).collectLatest {
             when (it) {
                 is Result.Loading -> {
