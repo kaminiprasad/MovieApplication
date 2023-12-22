@@ -4,22 +4,21 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movie.app.presentation.ui.compose.MovieDetailState
+import com.movie.app.presentation.ui.util.Constants.MOVIE_ID
 import com.movie.app.presentation.ui.util.CoroutineContextProvider
 import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
-import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
-import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
+import com.movie.domain.usecase.artist.MovieArtistUseCase
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.* // ktlint-disable no-wildcard-imports
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val movieDetails: MovieDetailsUseCaseImpl,
-    private val movieArtist: MovieArtistUseCaseImpl,
+    private val movieDetails: MovieDetailsUseCase,
+    private val movieArtist: MovieArtistUseCase,
     private val contextProvider: CoroutineContextProvider,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -39,13 +38,13 @@ class MovieDetailViewModel @Inject constructor(
     val errorState: StateFlow<String> = _errorState
 
     init {
-        savedStateHandle.get<String>("movie_id")?.let {
+        savedStateHandle.get<String>(MOVIE_ID)?.let {
             getMovieById(it.toInt())
             movieCredit(it.toInt())
         }
     }
 
-    fun getMovieById(id: Int) = viewModelScope.launch(contextProvider.IO) {
+    internal fun getMovieById(id: Int) = viewModelScope.launch(contextProvider.IO) {
         movieDetails(id = id).collectLatest {
             when (it) {
                 is Result.Loading -> {
@@ -69,7 +68,7 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun movieCredit(movieId: Int) {
+    internal fun movieCredit(movieId: Int) {
         viewModelScope.launch {
             movieArtist(movieId).collectLatest {
                 when (it) {

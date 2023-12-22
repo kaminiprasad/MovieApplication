@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.movie.app.presentation.ui.detailsscreen.MovieDetailScreen
 import com.movie.app.presentation.ui.homescreen.HomeScreen
+import com.movie.app.presentation.ui.util.Constants.MOVIE_ID
 
 @ExperimentalFoundationApi
 @Composable
@@ -20,7 +21,7 @@ fun NavGraphs(navHostController: NavHostController) {
         ) {
             HomeScreen(navController = navHostController)
         }
-        composable(route = Screen.MovieItemDetail.route + "/{movie_id}") {
+        composable(route = Screen.MovieItemDetail.route + "/{$MOVIE_ID}") {
             MovieDetailScreen()
         }
     }

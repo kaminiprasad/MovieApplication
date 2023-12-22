@@ -7,8 +7,11 @@ import com.movie.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
 import com.movie.domain.repository.Repository
+import com.movie.domain.usecase.artist.MovieArtistUseCase
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
+import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
 import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
+import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
 import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -68,10 +71,10 @@ class NetworkModule {
         retrofit.create(ApiService::class.java)
 
     @Provides
-    fun provideIoDispatcher() = Dispatchers.IO
+    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Provides
-    fun provideRemoteSource(apiService: ApiService) = RemoteDataSourceImpl(apiService)
+    fun provideRemoteDataSource(apiService: ApiService) = RemoteDataSourceImpl(apiService)
 
     @Provides
     fun provideRepository(
@@ -83,17 +86,17 @@ class NetworkModule {
     )
 
     @Provides
-    fun provideMovieUseCase(repository: Repository): PopularMovieUseCaseImpl {
+    fun provideMovieUseCase(repository: Repository): PopularMovieUseCase {
         return PopularMovieUseCaseImpl(repository)
     }
 
     @Provides
-    fun provideMovieDetailsUseCase(repository: Repository): MovieDetailsUseCaseImpl {
+    fun provideMovieDetailsUseCase(repository: Repository): MovieDetailsUseCase {
         return MovieDetailsUseCaseImpl(repository)
     }
 
     @Provides
-    fun provideMovieArtistUseCase(repository: Repository): MovieArtistUseCaseImpl {
+    fun provideMovieArtistUseCase(repository: Repository): MovieArtistUseCase {
         return MovieArtistUseCaseImpl(repository)
     }
 }

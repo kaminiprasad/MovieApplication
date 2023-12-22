@@ -6,18 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.movie.app.presentation.ui.util.CoroutineContextProvider
 import com.movie.domain.entity.movie.Movie
 import com.movie.domain.extension.Result
-import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
+import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.* // ktlint-disable no-wildcard-imports
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PopularMoviesViewModel @Inject constructor(
-    private val movieUseCase: PopularMovieUseCaseImpl,
-    private val coroutineContextProvider: CoroutineContextProvider = CoroutineContextProvider()
+    private val movieUseCase: PopularMovieUseCase,
+    private val coroutineContextProvider: CoroutineContextProvider = CoroutineContextProvider(),
 ) : ViewModel() {
 
     init {
@@ -47,6 +45,9 @@ class PopularMoviesViewModel @Inject constructor(
                 is Result.Error -> {
                     _loadingState.value = false
                     _errorState.value = it.error
+                }
+                is Result.Empty -> {
+                    // No implementation
                 }
             }
         }

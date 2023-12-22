@@ -1,6 +1,7 @@
 package com.movie.app.presentation.ui.viewmodel.moviedetail
 
 import androidx.lifecycle.SavedStateHandle
+import com.movie.app.presentation.ui.util.Constants.MOVIE_ID
 import com.movie.app.utils.BaseTest
 import com.movie.app.utils.FakeRepositoryImpl
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
@@ -24,7 +25,7 @@ class MovieDetailViewModelTest : BaseTest() {
     @Before
     fun setUp() {
         Dispatchers.setMain(mainCoroutineRule.dispatcherProvider.testCoroutineDispatcher)
-        val savedState = SavedStateHandle(mapOf("movie_id" to "951539"))
+        val savedState = SavedStateHandle(mapOf(MOVIE_ID to "951539"))
         MockitoAnnotations.initMocks(this)
         movieRepository = FakeRepositoryImpl()
         movieDetailsUseCase = MovieDetailsUseCaseImpl(movieRepository)
