@@ -1,9 +1,6 @@
 package com.movie.data.model.artist
 
 import com.google.gson.annotations.SerializedName
-import com.movie.data.mapper.Dto
-import com.movie.data.util.notNull
-import com.movie.domain.entity.artist.Crew
 
 data class CrewDto(
     @SerializedName("adult")
@@ -28,18 +25,4 @@ data class CrewDto(
     val popularity: Double,
     @SerializedName("profile_path")
     val profilePath: String?,
-) : Dto {
-    override fun asDomain() = Crew(
-        adult,
-        creditId,
-        department,
-        gender,
-        id,
-        job,
-        knownForDepartment,
-        name,
-        originalName,
-        popularity,
-        profilePath.notNull(),
-    )
-}
+)

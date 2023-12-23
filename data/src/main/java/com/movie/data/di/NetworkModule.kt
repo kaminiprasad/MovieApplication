@@ -3,7 +3,6 @@ package com.movie.data.di
 import com.movie.data.api.ApiService
 import com.movie.data.repository.RepositoryImpl
 import com.movie.data.repository.datasource.RemoteDataSource
-import com.movie.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
 import com.movie.domain.repository.Repository
@@ -72,9 +71,6 @@ class NetworkModule {
 
     @Provides
     fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.IO
-
-    @Provides
-    fun provideRemoteDataSource(apiService: ApiService) = RemoteDataSourceImpl(apiService)
 
     @Provides
     fun provideRepository(
