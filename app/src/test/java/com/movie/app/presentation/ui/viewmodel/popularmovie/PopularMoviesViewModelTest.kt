@@ -13,7 +13,7 @@ import kotlinx.coroutines.test.* // ktlint-disable no-wildcard-imports
 import org.junit.* // ktlint-disable no-wildcard-imports
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class PopularMoviesViewModelTest /*: BaseTest()*/ {
+class PopularMoviesViewModelTest {
 
     private val useCase: PopularMovieUseCase = mockk()
     private lateinit var testDispatcher: TestDispatcher
@@ -28,7 +28,24 @@ class PopularMoviesViewModelTest /*: BaseTest()*/ {
     @Test
     fun getMovieTest() = runTest {
         // Given
-        val popularMovies = listOf(
+        val expectedResult = Result.Success(getPopularMovies())
+        coEvery { useCase() } returns flowOf(expectedResult)
+
+        // When
+        val viewModel = PopularMoviesViewModel(useCase)
+        viewModel.getMovieList()
+
+        // Then
+        viewModel.movieState.collectLatest {
+            if (it.isEmpty().not()) {
+                assert(it.first().title == "Trolls Band Together")
+                assert(it.first().voteAverage == 6.3)
+            }
+        }
+    }
+
+    private fun getPopularMovies() =
+        listOf(
             Movie(
                 id = 897087,
                 title = "Trolls Band Together",
@@ -57,21 +74,6 @@ class PopularMoviesViewModelTest /*: BaseTest()*/ {
                 releaseDate = "2023-10-12",
             ),
         )
-        val expectedResult = Result.Success(popularMovies)
-        coEvery { useCase() } returns flowOf(expectedResult)
-
-        // When
-        val viewModel = PopularMoviesViewModel(useCase)
-        viewModel.getMovieList()
-
-        // Then
-        viewModel.movieState.collectLatest {
-            if (it.isEmpty().not()) {
-                assert(it.first().title == "Trolls Band Together")
-                assert(it.first().voteAverage == 6.3)
-            }
-        }
-    }
 
     @After
     fun tearDown() {

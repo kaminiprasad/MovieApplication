@@ -19,7 +19,7 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(
     private val movieDetails: MovieDetailsUseCase,
     private val movieArtist: MovieArtistUseCase,
-    private val contextProvider: CoroutineContextProvider,
+    private val contextProvider: CoroutineContextProvider = CoroutineContextProvider(),
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
