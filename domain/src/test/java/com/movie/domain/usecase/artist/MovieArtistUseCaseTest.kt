@@ -1,7 +1,8 @@
 package com.movie.domain.usecase.artist
 
+import com.movie.domain.* // ktlint-disable no-wildcard-imports
 import com.movie.domain.extension.Result
-import com.movie.domain.repository.FakeMovieRepository
+import com.movie.domain.repository.MockMovieRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -10,25 +11,25 @@ import org.junit.Test
 
 class MovieArtistUseCaseTest {
     private lateinit var movieDetailUseCase: MovieArtistUseCaseImpl
-    private lateinit var movieRepository: FakeMovieRepository
+    private lateinit var movieRepository: MockMovieRepository
 
     @Before
     fun setUp() {
-        movieRepository = FakeMovieRepository()
+        movieRepository = MockMovieRepository()
         movieDetailUseCase = MovieArtistUseCaseImpl(movieRepository)
     }
 
     @Test
     fun getMovieCreditTest() = runBlocking {
-        movieDetailUseCase(951546).collect {
-            movieDetailUseCase(951546).collect {
+        movieDetailUseCase(ARTIST_ID).collect {
+            movieDetailUseCase(ARTIST_ID).collect {
                 when (it) {
                     is Result.Success -> {
-                        Assert.assertEquals("Mike Kelson", it.data.cast.first().name)
-                        Assert.assertTrue(2.092 == it.data.cast.first().popularity)
-                        Assert.assertEquals("Casting", it.data.crew.last().job)
+                        Assert.assertEquals(MIKE_KELSON, it.data.cast.first().name)
+                        Assert.assertTrue(MIKE_KELSON_POPULARITY == it.data.cast.first().popularity)
+                        Assert.assertEquals(CASTING, it.data.crew.last().job)
                         Assert.assertEquals(
-                            "63eb134f699fb70084e0c5e1",
+                            REBECCA_CREDIT_ID,
                             it.data.crew.last().creditId,
                         )
                     }

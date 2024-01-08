@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -96,7 +97,7 @@ fun PopularMoviesItem(
                         .size(16.dp),
                 )
                 Text(
-                    text = popular.voteAverage.roundOff().plus(" IMDb"),
+                    text = popular.voteAverage.roundOff().plus(stringResource(R.string.imdb)),
                     modifier = Modifier.padding(
                         top = 12.dp,
                         start = 4.dp,

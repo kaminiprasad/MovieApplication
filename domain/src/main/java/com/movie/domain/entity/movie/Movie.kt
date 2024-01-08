@@ -1,7 +1,5 @@
 package com.movie.domain.entity.movie
 
-import com.movie.domain.util.Domain
-
 data class Movie(
     val id: Int,
     val title: String,
@@ -10,4 +8,4 @@ data class Movie(
     val posterUrl: String,
     val voteAverage: Double,
     val releaseDate: String,
-) : Domain
+)

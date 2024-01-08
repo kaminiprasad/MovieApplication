@@ -10,4 +10,10 @@
     <string name="movie_home">Movie Home</string>
     <string name="similar">Similar Movies</string>
     <string name="cast">Cast</string>
+    <string name="connectivity_icon">Connectivity Icon</string>
+    <string name="internet_connection_available">Back Online!</string>
+    <string name="internet_connection_not_available">No Internet Connection!</string>
+    <string name="tag_progress_bar">progress_bar</string>
+    <string name="popular_movie_screen_tag">popular-movie-screenTag</string>
+    <string name="imdb"> IMDb</string>
 </resources>

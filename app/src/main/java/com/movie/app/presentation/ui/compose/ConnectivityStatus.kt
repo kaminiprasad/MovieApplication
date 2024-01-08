@@ -10,8 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.movie.app.R
 import com.movie.app.presentation.ui.theme.green
 import com.movie.app.presentation.ui.theme.red
 import com.movie.app.presentation.ui.util.ConnectionState
@@ -48,7 +50,14 @@ fun ConnectivityStatus(connection: ConnectionState, onRefresh: () -> Unit) {
 @Composable
 fun ConnectivityStatusBox(isConnected: Boolean) {
     val backgroundColor by animateColorAsState(if (isConnected) green else red)
-    val message = if (isConnected) "Back Online!" else "No Internet Connection!"
+    val message =
+        if (isConnected) {
+            stringResource(R.string.internet_connection_available)
+        } else {
+            stringResource(
+                R.string.internet_connection_not_available,
+            )
+        }
     val iconResource = if (isConnected) {
         android.R.drawable.ic_lock_idle_charging
     } else {
@@ -63,7 +72,11 @@ fun ConnectivityStatusBox(isConnected: Boolean) {
         contentAlignment = Alignment.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(painterResource(id = iconResource), "Connectivity Icon", tint = Color.White)
+            Icon(
+                painterResource(id = iconResource),
+                stringResource(R.string.connectivity_icon),
+                tint = Color.White,
+            )
             Spacer(modifier = Modifier.size(8.dp))
             Text(message, color = Color.White, fontSize = 15.sp)
         }

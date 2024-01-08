@@ -1,7 +1,5 @@
 package com.movie.domain.entity.artist
 
-import com.movie.domain.util.Domain
-
 data class Crew(
     val adult: Boolean,
     val creditId: String,
@@ -14,4 +12,4 @@ data class Crew(
     val originalName: String,
     val popularity: Double,
     val profilePath: String,
-) : Domain
+)

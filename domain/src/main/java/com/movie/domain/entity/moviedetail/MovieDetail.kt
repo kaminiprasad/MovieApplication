@@ -1,7 +1,5 @@
 package com.movie.domain.entity.moviedetail
 
-import com.movie.domain.util.Domain
-
 data class MovieDetail(
     val backdropPath: String,
     val originalLanguage: String,
@@ -17,4 +15,4 @@ data class MovieDetail(
     val id: Int,
     val runtime: Int,
     val voteCount: Int,
-) : Domain
+)

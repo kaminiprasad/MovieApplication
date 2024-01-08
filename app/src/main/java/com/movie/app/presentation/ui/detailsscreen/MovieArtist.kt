@@ -18,11 +18,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
 import com.movie.app.presentation.ui.util.Constants.PROFILE_PATH_URL
 import com.movie.domain.entity.artist.Cast
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun ArtistAndCrew(cast: List<Cast>) {
     Column(modifier = Modifier.padding(bottom = 10.dp)) {

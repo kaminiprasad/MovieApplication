@@ -50,7 +50,7 @@ fun MovieDetailScreen(
     Column(modifier = Modifier.fillMaxSize()) {
         CircularProgressBar(
             isDisplayed = progressBar.value,
-            modifier = Modifier.testTag("progress_bar"),
+            modifier = Modifier.testTag(stringResource(R.string.tag_progress_bar)),
         )
         movieDetail.value.movie?.let { it ->
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {

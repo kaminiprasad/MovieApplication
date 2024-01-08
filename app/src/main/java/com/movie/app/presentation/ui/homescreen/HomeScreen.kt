@@ -11,10 +11,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.movie.app.R
 import com.movie.app.presentation.navigation.Screen
 import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.compose.ConnectivityStatus
@@ -42,13 +44,13 @@ fun HomeScreen(
         ) {
             CircularProgressBar(
                 isDisplayed = status.value,
-                modifier = Modifier.testTag("progress_bar"),
+                modifier = Modifier.testTag(stringResource(R.string.tag_progress_bar)),
             )
             ErrorComponent()
             val listState = rememberLazyListState()
             LazyColumn(
                 state = listState,
-                modifier = Modifier.testTag("popular-movie-screenTag"),
+                modifier = Modifier.testTag(stringResource(R.string.popular_movie_screen_tag)),
             ) {
                 items(
                     items = result.value,
