@@ -20,7 +20,7 @@ class MovieArtistUseCaseTest {
     }
 
     @Test
-    fun getMovieCreditTest() = runBlocking {
+    fun `GIVEN a movie artist WHEN the movie detail's of an artis is requested THEN the artist's detail will be returned`() = runBlocking {
         movieDetailUseCase(ARTIST_ID).collect {
             movieDetailUseCase(ARTIST_ID).collect {
                 when (it) {

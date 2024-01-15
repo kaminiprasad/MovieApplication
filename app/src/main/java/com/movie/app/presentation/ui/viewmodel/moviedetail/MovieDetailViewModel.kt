@@ -20,7 +20,7 @@ class MovieDetailViewModel @Inject constructor(
     private val movieDetails: MovieDetailsUseCase,
     private val movieArtist: MovieArtistUseCase,
     private val contextProvider: CoroutineContextProvider = CoroutineContextProvider(),
-    savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _movieState: MutableStateFlow<MovieDetailState> =
@@ -36,13 +36,6 @@ class MovieDetailViewModel @Inject constructor(
 
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> = _errorState
-
-    init {
-        savedStateHandle.get<String>(MOVIE_ID)?.let {
-            getMovieById(it.toInt())
-            movieCredit(it.toInt())
-        }
-    }
 
     internal fun getMovieById(id: Int) = viewModelScope.launch(contextProvider.IO) {
         movieDetails(id = id).collectLatest {
@@ -87,6 +80,13 @@ class MovieDetailViewModel @Inject constructor(
                     else -> {}
                 }
             }
+        }
+    }
+
+    fun loadMovieDetailData() {
+        savedStateHandle.get<String>(MOVIE_ID)?.let {
+            getMovieById(it.toInt())
+            movieCredit(it.toInt())
         }
     }
 }

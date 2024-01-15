@@ -23,8 +23,10 @@ import com.movie.app.presentation.ui.compose.ConnectivityStatus
 import com.movie.app.presentation.ui.compose.ErrorComponent
 import com.movie.app.presentation.ui.util.connectivityState
 import com.movie.app.presentation.ui.viewmodel.popularmovie.PopularMoviesViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@OptIn(ExperimentalAnimationApi::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
+@ExperimentalAnimationApi
 @Composable
 fun HomeScreen(
     navController: NavController,
@@ -36,7 +38,7 @@ fun HomeScreen(
     val state by connectivityState()
     SwipeRefresh(
         state = rememberSwipeRefreshState(status.value),
-        onRefresh = { viewModel.refresh() },
+        onRefresh = { viewModel.loadMovieData() },
     ) {
         Box(
             modifier = Modifier
@@ -64,7 +66,7 @@ fun HomeScreen(
                     },
                 )
             }
-            ConnectivityStatus(connection = state, onRefresh = { viewModel.refresh() })
+            ConnectivityStatus(connection = state, onRefresh = { viewModel.loadMovieData() })
         }
     }
 }

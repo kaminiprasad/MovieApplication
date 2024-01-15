@@ -7,7 +7,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
+@ExperimentalCoroutinesApi
 class MovieListMapperImplTest {
     private lateinit var mapper: MovieListMapperImpl
 
@@ -16,9 +16,8 @@ class MovieListMapperImplTest {
         mapper = MovieListMapperImpl()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun movieDetailDtoTest() = runTest {
+    fun `GIVEN a movie list WHEN the dtos of list of movies are requested THEN the list of movie's detail mapping are returned`() = runTest {
         val movieList = mapper.map(data = listOf(getMovieDto()))
         Assert.assertEquals(1, movieList.size)
         Assert.assertEquals(MOVIE_TITLE, movieList.first().originalTitle)

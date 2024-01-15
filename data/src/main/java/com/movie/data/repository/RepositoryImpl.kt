@@ -3,6 +3,7 @@ package com.movie.data.repository
 import com.movie.data.repository.datasource.RemoteDataSource
 import com.movie.domain.repository.Repository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -11,11 +12,11 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getPopularMovies() =
-        remoteDataSource.getPopularMovies()
+        remoteDataSource.getPopularMovies().flowOn(dispatcher)
 
     override suspend fun getMovieById(id: Int) =
-        remoteDataSource.getMovieById(id)
+        remoteDataSource.getMovieById(id).flowOn(dispatcher)
 
     override suspend fun getMovieCredit(movieId: Int) =
-        remoteDataSource.getMovieCredit(movieId)
+        remoteDataSource.getMovieCredit(movieId).flowOn(dispatcher)
 }

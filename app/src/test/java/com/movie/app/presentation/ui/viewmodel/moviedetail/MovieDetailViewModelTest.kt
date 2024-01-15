@@ -19,24 +19,21 @@ import org.junit.Before
 import org.junit.Test
 
 const val MOVIE_ARTIST_ID = "951539"
-
+@ExperimentalCoroutinesApi
 class MovieDetailViewModelTest {
     private val movieDetailUseCase: MovieDetailsUseCase = mockk()
     private val artistUseCase: MovieArtistUseCase = mockk()
     private lateinit var testDispatcher: TestDispatcher
     private lateinit var savedStateHandle: SavedStateHandle
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
         testDispatcher = UnconfinedTestDispatcher()
         Dispatchers.setMain(testDispatcher)
         savedStateHandle = SavedStateHandle(mapOf(MOVIE_ID to MOVIE_ARTIST_ID))
     }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun getMovieDetailTest() = runTest {
+    fun `GIVEN a movie detail WHEN a movie with particular id is requested THEN the movie detail is returned`() = runTest {
         val expectedResult = Result.Success(getMovieDetail())
         coEvery { movieDetailUseCase(MOVIE_ARTIST_ID.toInt()) } returns flowOf(expectedResult)
 
@@ -55,10 +52,8 @@ class MovieDetailViewModelTest {
             assert(it.movie?.voteAverage == MOVIE_DETAIL_VOTE_AVERAGE)
         }
     }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun getMovieArtistTest() = runTest {
+    fun `GIVEN a movie WHEN artist's crew and cast are requested THEN the movie artist details are returned`() = runTest {
         val movieArtist = Artist(
             cast = getMovieCast(),
             crew = getMovieCrew(),
@@ -87,7 +82,6 @@ class MovieDetailViewModelTest {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @After
     fun tearDown() {
         Dispatchers.resetMain()

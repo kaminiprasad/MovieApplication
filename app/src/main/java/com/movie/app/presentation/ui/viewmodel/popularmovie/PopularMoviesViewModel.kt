@@ -18,10 +18,6 @@ class PopularMoviesViewModel @Inject constructor(
     private val coroutineContextProvider: CoroutineContextProvider = CoroutineContextProvider(),
 ) : ViewModel() {
 
-    init {
-        getMovieList()
-    }
-
     private val _movieState: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
     val movieState: StateFlow<List<Movie>> = _movieState
 
@@ -52,5 +48,5 @@ class PopularMoviesViewModel @Inject constructor(
             }
         }
     }
-    fun refresh() = getMovieList()
+    fun loadMovieData() = getMovieList()
 }

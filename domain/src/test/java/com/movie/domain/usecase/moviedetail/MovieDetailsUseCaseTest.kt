@@ -22,7 +22,7 @@ class MovieDetailsUseCaseTest {
     }
 
     @Test
-    fun getMovieDetailTest() = runBlocking {
+    fun `GIVEN a movie WHEN the movie detail's of particular movie is requested THEN the movie's details will be returned`() = runBlocking {
         movieDetailUseCase(ARTIST_ID).collect {
             when (it) {
                 is Result.Success -> {

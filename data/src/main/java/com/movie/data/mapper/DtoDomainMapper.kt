@@ -1,18 +1,23 @@
 package com.movie.data.mapper
 
-import android.util.Log
+import com.movie.data.util.Constants.EXCEPTION_DESCRIPTION
+import com.movie.data.util.Constants.EXCEPTION_UNKNOWN_ERROR
 import com.movie.domain.extension.Result
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
 inline fun <T> repoFlow(
-    crossinline block: suspend () -> T,
+    crossinline block: suspend () -> T
 ): Flow<Result<T>> = flow {
-    try {
-        val repoResult = block()
-        emit(Result.Success(repoResult))
-    } catch (e: Exception) {
-        Log.e("Exception", "Exception while fetching data : ${e.stackTrace}")
-        emit(Result.Error(e.message ?: "Unknown error"))
-    }
+    emit(emitSuccess(block()))
+}.catch {
+    println(EXCEPTION_DESCRIPTION.plus({ it.stackTrace }))
+    emit(emitError(it.message ?: EXCEPTION_UNKNOWN_ERROR))
+}
+fun <T> emitSuccess(repoResult: T): Result<T> {
+    return Result.Success(repoResult)
+}
+fun <T> emitError(errorMessage: String): Result<T> {
+    return Result.Error(errorMessage)
 }

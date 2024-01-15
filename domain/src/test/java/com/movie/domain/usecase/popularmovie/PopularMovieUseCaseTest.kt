@@ -19,7 +19,7 @@ class PopularMovieUseCaseTest {
     }
 
     @Test
-    fun getPopularMoviesFirstItemTest() = runBlocking {
+    fun `GIVEN a popular movie WHEN the movie list are requested THEN the details of the first popular movie in the movie list's data will be returned`() = runBlocking {
         popularMoviesUseCase().collect {
             when (it) {
                 is Result.Success -> {
@@ -32,7 +32,7 @@ class PopularMovieUseCaseTest {
     }
 
     @Test
-    fun getPopularMoviesLastItemTest() = runBlocking {
+    fun `GIVEN a popular movie WHEN the movie list are requested THEN the details of the last popular movie item in the list's data will be returned`() = runBlocking {
         popularMoviesUseCase().collect {
             when (it) {
                 is Result.Success -> {

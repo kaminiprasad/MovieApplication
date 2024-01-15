@@ -9,7 +9,7 @@ import okhttp3.Interceptor
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AbstractNetworkRequestModule {
+abstract class NetworkRequestModule {
     @Binds
     abstract fun bindRequestInterceptor(reqInterceptor: RequestInterceptor): Interceptor
 }

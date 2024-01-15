@@ -10,7 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-
+@ExperimentalCoroutinesApi
 class ArtistMapperImplTest {
     private lateinit var mapper: ArtistMapperImpl
 
@@ -19,9 +19,8 @@ class ArtistMapperImplTest {
         mapper = ArtistMapperImpl()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun artistDtoTest() = runTest {
+    fun `GIVEN an artist WHEN the dtos of artist's crew and cast are requested THEN the artist's mapping details are returned`() = runTest {
         val artist =
             mapper.map(data = ArtistDto(cast = getMovieCastDto(), crew = getMovieCrewDto(), -1))
 

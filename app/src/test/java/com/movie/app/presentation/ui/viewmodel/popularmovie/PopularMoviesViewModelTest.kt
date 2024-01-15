@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.* // ktlint-disable no-wildcard-imports
 import org.junit.* // ktlint-disable no-wildcard-imports
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class PopularMoviesViewModelTest {
 
     private val useCase: PopularMovieUseCase = mockk()
@@ -23,9 +23,8 @@ class PopularMoviesViewModelTest {
         Dispatchers.setMain(testDispatcher)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun getMovieTest() = runTest {
+    fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() = runTest {
         // Given
         val expectedResult = Result.Success(getPopularMovies())
         coEvery { useCase() } returns flowOf(expectedResult)
