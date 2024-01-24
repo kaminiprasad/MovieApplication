@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.movie.app.R
+import com.movie.app.presentation.ui.theme.DEFAULT_FONT_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.green
 import com.movie.app.presentation.ui.theme.red
 import com.movie.app.presentation.ui.util.ConnectionState
@@ -68,7 +68,7 @@ fun ConnectivityStatusBox(isConnected: Boolean) {
         modifier = Modifier
             .background(backgroundColor)
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(DEFAULT_PADDING_SMALL_SIZE),
         contentAlignment = Alignment.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -77,8 +77,8 @@ fun ConnectivityStatusBox(isConnected: Boolean) {
                 stringResource(R.string.connectivity_icon),
                 tint = Color.White,
             )
-            Spacer(modifier = Modifier.size(8.dp))
-            Text(message, color = Color.White, fontSize = 15.sp)
+            Spacer(modifier = Modifier.size(DEFAULT_PADDING_SMALL_SIZE))
+            Text(message, color = Color.White, fontSize = DEFAULT_FONT_EXTRA_LARGE_SIZE)
         }
     }
 }

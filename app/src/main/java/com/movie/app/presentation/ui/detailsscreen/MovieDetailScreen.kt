@@ -29,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -38,6 +37,10 @@ import com.movie.app.R
 import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.compose.ConnectivityStatus
 import com.movie.app.presentation.ui.compose.MovieDetailErrorComponent
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_MEDIUM_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.SIZE_240_DP
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants.IMAGE_URL
 import com.movie.app.presentation.ui.util.connectivityState
@@ -85,10 +88,10 @@ fun MovieDetailScreen(
                             contentDescription = it.originalTitle,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .height(250.dp)
+                                .height(SIZE_240_DP)
                                 .padding(
-                                    start = 5.dp,
-                                    end = 5.dp,
+                                    start = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
+                                    end = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
                                 )
                                 .clip(MaterialTheme.shapes.large),
                         )
@@ -96,8 +99,8 @@ fun MovieDetailScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(
-                                    start = 15.dp,
-                                    end = 15.dp,
+                                    start = DEFAULT_PADDING_EXTRA_LARGE_SIZE,
+                                    end = DEFAULT_PADDING_EXTRA_LARGE_SIZE,
                                 ),
                         ) {
                             Text(
@@ -105,7 +108,7 @@ fun MovieDetailScreen(
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .align(alignment = Alignment.CenterHorizontally)
-                                    .padding(10.dp),
+                                    .padding(DEFAULT_PADDING_MEDIUM_SIZE),
                                 overflow = TextOverflow.Ellipsis,
                                 maxLines = 2,
                                 style = MaterialTheme.typography.h4,
@@ -115,8 +118,8 @@ fun MovieDetailScreen(
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .padding(
-                                        bottom = 10.dp,
-                                        top = 10.dp,
+                                        bottom = DEFAULT_PADDING_MEDIUM_SIZE,
+                                        top = DEFAULT_PADDING_MEDIUM_SIZE,
                                     ),
                             ) {
                                 Column(
@@ -181,14 +184,14 @@ fun MovieDetailScreen(
                             Text(
                                 modifier = Modifier
                                     .align(alignment = Alignment.Start)
-                                    .padding(10.dp),
+                                    .padding(DEFAULT_PADDING_MEDIUM_SIZE),
                                 text = stringResource(R.string.description),
                                 fontWeight = FontWeight.Bold,
                                 style = MaterialTheme.typography.h5,
                             )
                             Text(
                                 text = it.overview,
-                                modifier = Modifier.padding(10.dp),
+                                modifier = Modifier.padding(DEFAULT_PADDING_MEDIUM_SIZE),
                             )
                             ArtistAndCrew(artist.value.cast)
                         }

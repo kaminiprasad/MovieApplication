@@ -17,21 +17,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_MEDIUM_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.SIZE_180_DP
+import com.movie.app.presentation.ui.theme.SIZE_240_DP
 import com.movie.app.presentation.ui.util.Constants.PROFILE_PATH_URL
 import com.movie.domain.entity.artist.Cast
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun ArtistAndCrew(cast: List<Cast>) {
-    Column(modifier = Modifier.padding(bottom = 10.dp)) {
+    Column(modifier = Modifier.padding(bottom = DEFAULT_PADDING_MEDIUM_SIZE)) {
         Text(
             modifier = Modifier
                 .align(alignment = Alignment.Start)
-                .padding(10.dp),
+                .padding(DEFAULT_PADDING_MEDIUM_SIZE),
             text = stringResource(R.string.cast),
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h5,
@@ -52,12 +55,12 @@ fun ArtistAndCrew(cast: List<Cast>) {
                             contentDescription = item.name,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .height(240.dp)
-                                .width(180.dp)
+                                .height(SIZE_240_DP)
+                                .width(SIZE_180_DP)
                                 .padding(
-                                    end = 10.dp,
-                                    top = 5.dp,
-                                    bottom = 5.dp,
+                                    end = DEFAULT_PADDING_MEDIUM_SIZE,
+                                    top = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
+                                    bottom = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
                                 )
                                 .clip(shape = MaterialTheme.shapes.large)
                                 .clickable(
@@ -68,9 +71,9 @@ fun ArtistAndCrew(cast: List<Cast>) {
                         Text(
                             text = item.name,
                             modifier = Modifier.padding(
-                                end = 10.dp,
-                                top = 5.dp,
-                                bottom = 5.dp,
+                                end = DEFAULT_PADDING_MEDIUM_SIZE,
+                                top = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
+                                bottom = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
                             ),
                         )
                     }

@@ -21,15 +21,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
+import com.movie.app.presentation.ui.theme.DEFAULT_FONT_VERY_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_FONT_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.SIZE_150_DP
+import com.movie.app.presentation.ui.theme.VERY_VERY_TINY_SIZE
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants
 import com.movie.app.presentation.ui.util.roundOff
 import com.movie.domain.entity.movie.Movie
 
+@ExperimentalCoilApi
 @Composable
 fun PopularMoviesItem(
     popular: Movie,
@@ -37,7 +47,7 @@ fun PopularMoviesItem(
 ) {
     Row(
         modifier = Modifier
-            .padding(6.dp)
+            .padding(DEFAULT_PADDING_VERY_SMALL_SIZE)
             .fillMaxWidth()
             .clickable {
                 onClick(popular)
@@ -53,9 +63,9 @@ fun PopularMoviesItem(
             ),
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(150.dp)
-                .border(BorderStroke(1.dp, Color.White))
-                .clip(RoundedCornerShape(16.dp))
+                .size(SIZE_150_DP)
+                .border(BorderStroke(VERY_VERY_TINY_SIZE, Color.White))
+                .clip(RoundedCornerShape(DEFAULT_PADDING_EXTRA_LARGE_SIZE))
                 .background(Color.White),
             contentDescription = popular.originalTitle,
         )
@@ -67,7 +77,7 @@ fun PopularMoviesItem(
                 withStyle(
                     style = SpanStyle(
                         color = Color.Gray,
-                        fontSize = 16.sp,
+                        fontSize = DEFAULT_FONT_EXTRA_LARGE_SIZE,
                         fontWeight = FontWeight.Light,
                     ),
                 ) {
@@ -78,8 +88,8 @@ fun PopularMoviesItem(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 text = annotatedString,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(start = 8.dp),
+                fontSize = DEFAULT_FONT_VERY_LARGE_SIZE,
+                modifier = Modifier.padding(start = DEFAULT_PADDING_SMALL_SIZE),
             )
 
             Row(
@@ -91,18 +101,18 @@ fun PopularMoviesItem(
                     tint = ratingStarColor,
                     modifier = Modifier
                         .padding(
-                            start = 8.dp,
-                            top = 12.dp,
+                            start = DEFAULT_PADDING_SMALL_SIZE,
+                            top = DEFAULT_PADDING_LARGE_SIZE,
                         )
-                        .size(16.dp),
+                        .size(DEFAULT_PADDING_EXTRA_LARGE_SIZE),
                 )
                 Text(
                     text = popular.voteAverage.roundOff().plus(stringResource(R.string.imdb)),
                     modifier = Modifier.padding(
-                        top = 12.dp,
-                        start = 4.dp,
+                        top = DEFAULT_PADDING_LARGE_SIZE,
+                        start = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
                     ),
-                    fontSize = 16.sp,
+                    fontSize = DEFAULT_FONT_EXTRA_LARGE_SIZE,
                     textAlign = TextAlign.Center,
                 )
             }
@@ -112,17 +122,17 @@ fun PopularMoviesItem(
                     contentDescription = Icons.Filled.DateRange.name,
                     modifier = Modifier
                         .padding(
-                            start = 8.dp,
-                            top = 12.dp,
+                            start = DEFAULT_PADDING_SMALL_SIZE,
+                            top = DEFAULT_PADDING_LARGE_SIZE,
                         )
-                        .size(24.dp),
+                        .size(DEFAULT_PADDING_VERY_VERY_LARGE_SIZE),
                 )
                 Text(
                     text = popular.releaseDate,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(
-                        top = 12.dp,
-                        start = 4.dp,
+                        top = DEFAULT_PADDING_LARGE_SIZE,
+                        start = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
                     ),
                 )
             }

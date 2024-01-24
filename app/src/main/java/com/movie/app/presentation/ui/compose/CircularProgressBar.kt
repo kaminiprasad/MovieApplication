@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_LARGE_SIZE
 
 @Composable
 fun CircularProgressBar(isDisplayed: Boolean, modifier: Modifier) {
@@ -16,7 +16,7 @@ fun CircularProgressBar(isDisplayed: Boolean, modifier: Modifier) {
         Box(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(top = 20.dp),
+                .padding(top = DEFAULT_PADDING_VERY_LARGE_SIZE),
             contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator(
