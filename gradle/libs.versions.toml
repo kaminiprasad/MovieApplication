@@ -1,4 +1,10 @@
 [versions]
+applicationId = "com.movie.app"
+compileSdk = "31"
+minSdk = "21"
+targetSdk = "31"
+versionCode = "1"
+versionName = "1.0"
 composeVersion = '1.0.3'
 accompanistVersion = '0.21.2-beta'
 kotlinVersion = '1.5.30'

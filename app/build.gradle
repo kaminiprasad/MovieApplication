@@ -6,14 +6,14 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk = libs.versions.getCompileSdk().get().toInteger()
 
     defaultConfig {
-        applicationId "com.movie.app"
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        applicationId libs.versions.getApplicationId().get().toString()
+        minSdk libs.versions.getMinSdk().get().toInteger()
+        targetSdk libs.versions.getTargetSdk().get().toInteger()
+        versionCode libs.versions.getVersionCode().get().toInteger()
+        versionName libs.versions.getVersionName().get().toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,13 +30,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
-//        useIR = true
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion libs.versions.getComposeVersion().get().toString()
     }
     packagingOptions {
         exclude 'META-INF/gradle/incremental.annotation.processors'
@@ -51,8 +50,8 @@ dependencies {
 
     implementation project(path: ':data')
     implementation project(path: ':domain')
-    implementation(libs.ktJdk)
 
+    implementation(libs.ktJdk)
     implementation(libs.compose.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
