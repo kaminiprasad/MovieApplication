@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -47,6 +48,7 @@ import com.movie.app.presentation.ui.util.connectivityState
 import com.movie.app.presentation.ui.util.roundOff
 import com.movie.app.presentation.ui.viewmodel.moviedetail.MovieDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+@ExperimentalCoilApi
 @ExperimentalCoroutinesApi
 @ExperimentalAnimationApi
 @Composable
@@ -75,7 +77,7 @@ fun MovieDetailScreen(
                     modifier = Modifier.testTag(stringResource(R.string.tag_progress_bar)),
                 )
                 MovieDetailErrorComponent()
-                movieDetail.value.movie?.let { it ->
+                movieDetail.value.movie?.let {
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Image(
                             painter = rememberImagePainter(

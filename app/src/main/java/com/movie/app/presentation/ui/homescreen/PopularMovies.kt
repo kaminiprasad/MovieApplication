@@ -24,6 +24,7 @@ import androidx.compose.ui.text.withStyle
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
+import com.movie.app.presentation.ui.model.DomainMovieToPresentationModel
 import com.movie.app.presentation.ui.theme.DEFAULT_FONT_EXTRA_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_FONT_VERY_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
@@ -37,13 +38,12 @@ import com.movie.app.presentation.ui.theme.VERY_VERY_TINY_SIZE
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants
 import com.movie.app.presentation.ui.util.roundOff
-import com.movie.domain.entity.movie.Movie
 
 @ExperimentalCoilApi
 @Composable
 fun PopularMoviesItem(
-    popular: Movie,
-    onClick: (Movie) -> Unit,
+    popular: DomainMovieToPresentationModel,
+    onClick: (DomainMovieToPresentationModel) -> Unit,
 ) {
     Row(
         modifier = Modifier

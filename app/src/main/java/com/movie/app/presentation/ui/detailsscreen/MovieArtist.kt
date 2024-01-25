@@ -20,16 +20,16 @@ import androidx.compose.ui.text.font.FontWeight
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
+import com.movie.app.presentation.ui.model.DomainCastToPresentationModel
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_MEDIUM_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.SIZE_180_DP
 import com.movie.app.presentation.ui.theme.SIZE_240_DP
 import com.movie.app.presentation.ui.util.Constants.PROFILE_PATH_URL
-import com.movie.domain.entity.artist.Cast
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun ArtistAndCrew(cast: List<Cast>) {
+fun ArtistAndCrew(cast: List<DomainCastToPresentationModel>) {
     Column(modifier = Modifier.padding(bottom = DEFAULT_PADDING_MEDIUM_SIZE)) {
         Text(
             modifier = Modifier

@@ -1,5 +1,6 @@
 package com.movie.app.presentation.ui.viewmodel.popularmovie
 
+import com.movie.app.presentation.ui.mapper.DomainMovieToPresentationMapperImpl
 import com.movie.app.utils.* // ktlint-disable no-wildcard-imports
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
@@ -15,6 +16,7 @@ import org.junit.* // ktlint-disable no-wildcard-imports
 class PopularMoviesViewModelTest {
 
     private val useCase: PopularMovieUseCase = mockk()
+    private val mapperImpl: DomainMovieToPresentationMapperImpl = mockk()
     private lateinit var testDispatcher: TestDispatcher
 
     @Before
@@ -24,23 +26,26 @@ class PopularMoviesViewModelTest {
     }
 
     @Test
-    fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() = runTest {
-        // Given
-        val expectedResult = Result.Success(getPopularMovies())
-        coEvery { useCase() } returns flowOf(expectedResult)
+    fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() =
+        runTest {
+            // Given
+            val expectedResult = Result.Success(getPopularMovies())
+            coEvery { useCase() } returns flowOf(expectedResult)
 
-        // When
-        val viewModel = PopularMoviesViewModel(useCase)
-        viewModel.getMovieList()
+            coEvery { mapperImpl.map(getPopularMovies()) } returns getPopularMoviesPresentation()
 
-        // Then
-        viewModel.movieState.collectLatest {
-            if (it.isEmpty().not()) {
-                assert(it.first().title == TROLLS_BAND_TOGETHER)
-                assert(it.first().voteAverage == TROLLS_VOTE_AVERAGE)
+            // When
+            val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
+            viewModel.getMovieList()
+
+            // Then
+            viewModel.movieState.collectLatest {
+                if (it.isEmpty().not()) {
+                    assert(it.first().title == TROLLS_BAND_TOGETHER)
+                    assert(it.first().voteAverage == TROLLS_VOTE_AVERAGE)
+                }
             }
         }
-    }
 
     @After
     fun tearDown() {

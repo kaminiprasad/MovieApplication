@@ -1,5 +1,9 @@
 package com.movie.app.utils
 
+import com.movie.app.presentation.ui.model.DomainCastToPresentationModel
+import com.movie.app.presentation.ui.model.DomainMovieToPresentationModel
+import com.movie.app.presentation.ui.model.DomainToCrewPresentationModel
+import com.movie.app.presentation.ui.model.MovieDetailToPresentationModel
 import com.movie.domain.entity.artist.Cast
 import com.movie.domain.entity.artist.Crew
 import com.movie.domain.entity.movie.Movie
@@ -182,6 +186,74 @@ fun getPopularMovies() =
             title = FREELANCE_TITLE,
             originalTitle = FREELANCE_TITLE,
             backdropPath = FREELANCE_BACKDROP_PATH,
+            posterUrl = FREELANCE_POSTER_URL,
+            voteAverage = FREELANCE_VOTE_AVERAGE,
+            releaseDate = FREELANCE_RELEASE_DATE,
+        ),
+    )
+
+fun getMovieCastPresentation(): MutableList<DomainCastToPresentationModel> {
+    val movieCast = mutableListOf<DomainCastToPresentationModel>()
+    val castMikeKelson = DomainCastToPresentationModel(
+        name = MIKE_KELSON,
+        profilePath = MIKE_KELSON_PROFILE_PATH,
+    )
+    val castRitaSiddiqui = DomainCastToPresentationModel(
+        name = RITA_SIDDIQUI,
+        profilePath = RITA_SIDDIQUI_PROFILE_PATH,
+    )
+    movieCast.add(castMikeKelson)
+    movieCast.add(castRitaSiddiqui)
+    return movieCast
+}
+
+fun getMovieCrewPresentation(): MutableList<DomainToCrewPresentationModel> {
+    val movieCrew = mutableListOf<DomainToCrewPresentationModel>()
+    val crewScottChambers = DomainToCrewPresentationModel(
+        name = SCOTT_CHAMBERS,
+        profilePath = SCOTT_CHAMBERS_PROFILE_PATH,
+    )
+    val crewRebeccaMatthews = DomainToCrewPresentationModel(
+        name = REBECCA_MATTHEWS,
+        profilePath = REBECCA_PROFILE_PATH,
+    )
+    movieCrew.add(crewScottChambers)
+    movieCrew.add(crewRebeccaMatthews)
+    return movieCrew
+}
+
+fun getMovieDetailPresentation() = MovieDetailToPresentationModel(
+    backdropPath = MOVIE_DETAIL_BACKDROP_PATH,
+    originalLanguage = MOVIE_DETAIL_ORIGINAL_LANGUAGE,
+    originalTitle = MOVIE_DETAIL_TITLE,
+    overview = MOVIE_DETAIL_OVERVIEW,
+    releaseDate = MOVIE_DETAIL_RELEASE_DATE,
+    title = MOVIE_DETAIL_TITLE,
+    voteAverage = MOVIE_DETAIL_VOTE_AVERAGE,
+)
+
+fun getPopularMoviesPresentation() =
+    listOf(
+        DomainMovieToPresentationModel(
+            id = TROLLS_BAND_TOGETHER_ID,
+            title = TROLLS_BAND_TOGETHER,
+            originalTitle = TROLLS_BAND_TOGETHER,
+            posterUrl = TROLLS_POSTER_URL,
+            voteAverage = TROLLS_VOTE_AVERAGE,
+            releaseDate = TROLLS_RELEASE_DATE,
+        ),
+        DomainMovieToPresentationModel(
+            id = KILLERS_ID,
+            title = KILLERS_TITLE,
+            originalTitle = KILLERS_TITLE,
+            posterUrl = KILLERS_POSTER_URL,
+            voteAverage = KILLERS_VOTE_AVERAGE,
+            releaseDate = KILLERS_RELEASE_DATE,
+        ),
+        DomainMovieToPresentationModel(
+            id = FREELANCE_ID,
+            title = FREELANCE_TITLE,
+            originalTitle = FREELANCE_TITLE,
             posterUrl = FREELANCE_POSTER_URL,
             voteAverage = FREELANCE_VOTE_AVERAGE,
             releaseDate = FREELANCE_RELEASE_DATE,

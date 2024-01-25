@@ -4,19 +4,25 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movie.app.presentation.ui.compose.MovieDetailState
+import com.movie.app.presentation.ui.mapper.DomainArtistToPresentationMapperImpl
+import com.movie.app.presentation.ui.mapper.MovieDetailToPresentationMapperImpl
+import com.movie.app.presentation.ui.model.DomainArtistToPresentationModel
 import com.movie.app.presentation.ui.util.Constants.MOVIE_ID
 import com.movie.app.presentation.ui.util.CoroutineContextProvider
-import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.artist.MovieArtistUseCase
 import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.* // ktlint-disable no-wildcard-imports
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
+    private val artistMapperImpl: DomainArtistToPresentationMapperImpl,
+    private val mapperImpl: MovieDetailToPresentationMapperImpl,
     private val movieDetails: MovieDetailsUseCase,
     private val movieArtist: MovieArtistUseCase,
     private val contextProvider: CoroutineContextProvider = CoroutineContextProvider(),
@@ -27,9 +33,15 @@ class MovieDetailViewModel @Inject constructor(
         MutableStateFlow(MovieDetailState())
     val movieState: StateFlow<MovieDetailState> = _movieState
 
-    private val _artistState: MutableStateFlow<Artist> =
-        MutableStateFlow(Artist(cast = emptyList(), crew = emptyList(), id = -1))
-    val artistState: StateFlow<Artist> = _artistState
+    private val _artistState: MutableStateFlow<DomainArtistToPresentationModel> =
+        MutableStateFlow(
+            DomainArtistToPresentationModel(
+                cast = emptyList(),
+                crew = emptyList(),
+                id = -1
+            )
+        )
+    val artistState: StateFlow<DomainArtistToPresentationModel> = _artistState
 
     private val _loadingState = MutableStateFlow(true)
     val loadingState: StateFlow<Boolean> = _loadingState
@@ -43,19 +55,22 @@ class MovieDetailViewModel @Inject constructor(
                 is Result.Loading -> {
                     _loadingState.value = true
                 }
+
                 is Result.Success -> {
                     _loadingState.value = false
                     _movieState.value = MovieDetailState(
-                        movie = it.data,
+                        movie = mapperImpl.map(it.data),
                         isLoading = false,
                         error = "",
                     )
                 }
+
                 is Result.Error -> {
                     _loadingState.value = true
                     _errorState.value = it.error
                     _movieState.value = MovieDetailState(error = it.error)
                 }
+
                 else -> {}
             }
         }
@@ -68,15 +83,22 @@ class MovieDetailViewModel @Inject constructor(
                     is Result.Loading -> {
                         _loadingState.value = true
                     }
+
                     is Result.Success -> {
                         _loadingState.value = false
-                        _artistState.value = it.data
+                        _artistState.value = artistMapperImpl.map(it.data)
                     }
+
                     is Result.Error -> {
                         _loadingState.value = true
                         _errorState.value = it.error
-                        _artistState.value = Artist(cast = emptyList(), crew = emptyList(), id = -1)
+                        _artistState.value = DomainArtistToPresentationModel(
+                            cast = emptyList(),
+                            crew = emptyList(),
+                            id = -1
+                        )
                     }
+
                     else -> {}
                 }
             }
