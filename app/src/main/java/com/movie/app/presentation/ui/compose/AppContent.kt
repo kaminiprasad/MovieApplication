@@ -1,5 +1,6 @@
 package com.movie.app.presentation.ui.compose
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.icons.Icons
@@ -14,7 +15,8 @@ import com.movie.app.R
 import com.movie.app.presentation.navigation.NavGraphs
 import com.movie.app.presentation.ui.util.isMovieDetailPage
 
-@OptIn(ExperimentalFoundationApi::class)
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 @Composable
 fun AppContent(navHostController: NavHostController) {
     val materialBlue700 = Color(0xFF4321D2)

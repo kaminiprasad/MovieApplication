@@ -37,8 +37,8 @@ import com.movie.app.R
 import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.compose.ConnectivityStatus
 import com.movie.app.presentation.ui.compose.MovieDetailErrorComponent
-import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_MEDIUM_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_MEDIUM_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.SIZE_240_DP
 import com.movie.app.presentation.ui.theme.ratingStarColor

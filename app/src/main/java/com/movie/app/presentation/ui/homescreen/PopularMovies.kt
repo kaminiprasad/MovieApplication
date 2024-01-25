@@ -24,13 +24,13 @@ import androidx.compose.ui.text.withStyle
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.movie.app.R
-import com.movie.app.presentation.ui.theme.DEFAULT_FONT_VERY_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_FONT_EXTRA_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_FONT_VERY_LARGE_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_SMALL_SIZE
-import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_LARGE_SIZE
-import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_EXTRA_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_SMALL_SIZE
+import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.SIZE_150_DP
 import com.movie.app.presentation.ui.theme.VERY_VERY_TINY_SIZE

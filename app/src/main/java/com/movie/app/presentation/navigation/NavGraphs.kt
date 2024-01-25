@@ -1,5 +1,6 @@
 package com.movie.app.presentation.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -9,6 +10,7 @@ import com.movie.app.presentation.ui.detailsscreen.MovieDetailScreen
 import com.movie.app.presentation.ui.homescreen.HomeScreen
 import com.movie.app.presentation.ui.util.Constants.MOVIE_ID
 
+@ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @Composable
 fun NavGraphs(navHostController: NavHostController) {
