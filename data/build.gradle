@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk = libs.versions.getCompileSdk().get().toInteger()
 
     defaultConfig {
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        minSdk libs.versions.getMinSdk().get().toInteger()
+        targetSdk libs.versions.getTargetSdk().get().toInteger()
+        versionCode libs.versions.getVersionCode().get().toInteger()
+        versionName libs.versions.getVersionName().get().toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
