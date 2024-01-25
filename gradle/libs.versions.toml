@@ -1,21 +1,18 @@
 [versions]
 applicationId = "com.movie.app"
 compileSdk = "31"
+kotlinGradlePluginVersion = "1.5.30"
 minSdk = "21"
 targetSdk = "31"
 versionCode = "1"
 versionName = "1.0"
 composeVersion = '1.0.3'
-accompanistVersion = '0.21.2-beta'
-kotlinVersion = '1.5.30'
 hiltAndroidVersion = '2.38.1'
 gradleVersion = '7.0.3'
-coilVersion = "2.1.0"
 kotlinLintVersion = "10.0.0"
 
 kotlinJDK = "1.5.30"
 androidxHilt = "1.0.0"
-hilt = "2.48"
 hiltCore = "2.35"
 daggerHiltAndroid = "2.40"
 hiltCompiler = "1.0.0"
@@ -34,21 +31,15 @@ viewmodelCompose = "2.5.0-alpha01"
 swipeRefresh = "0.24.1-alpha"
 googleMaterial = "1.5.0"
 appcompat = "1.4.1"
-androidGradlePlugin = "8.2.0"
 converterGson = "2.9.0"
-kotlin = "1.9.0"
 androidxCore = "1.7.0"
 androidxLifecycle = "2.4.0"
 androidxActivity = "1.4.0"
 
-kotlinxCoroutinesAndroid = "1.7.3"
 kotlinxCoroutinesTest = "1.5.0"
 coroutinesTestVersion = "1.6.1"
-mockk = "1.13.8"
-org-jetbrains-kotlin-jvm = "1.9.0"
 
 junit = "4.13.2"
-material = "1.11.0"
 retrofit = "2.9.0"
 
 coilCompose = "1.3.1"
@@ -57,6 +48,10 @@ espressoCore = "3.4.0"
 mockitoCore = "2.21.0"
 
 [libraries]
+kt-lint-gradle = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "kotlinLintVersion" }
+google-dagger-hilt-android-gradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltAndroidVersion" }
+android-build-tools = { module = "com.android.tools.build:gradle", version.ref = "gradleVersion" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
 ktJdk = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlinJDK" }
 google-dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "androidHiltTest" }
 android-arch-core-test = { module = "android.arch.core:core-testing", version.ref = "androidArchCoreTest" }
@@ -90,22 +85,13 @@ androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-androidx-compose-ui = { group = "androidx.compose.ui", name = "ui"}
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3"}
-androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics"}
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview"}
-androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4"}
 google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCore" }
 google-dagger-hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hiltCore" }
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "daggerHiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHiltAndroid" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHilt" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesTestVersion" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 androidx-test-ext-junit = {module = "androidx.test.ext:junit", version.ref = "junitExt"}
@@ -113,10 +99,4 @@ androidx-test-espresso = {module = "androidx.test.espresso:espresso-core" , vers
 android-mockito-core = {module = "org.mockito:mockito-core" , version.ref = "mockitoCore"}
 androidx-compose-test-manifest = {module = "androidx.compose.ui:ui-test-manifest" , version.ref = "composeVersion"}
 
-[plugins]
-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 
