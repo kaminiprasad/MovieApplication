@@ -6,5 +6,5 @@ object Constants {
     const val MOVIE_ID = "movie_id"
     const val HOME_SCREEN = "home_screen"
     const val MOVIE_DETAIL = "movie_detail"
-    const val EMPTY_STRING = " "
+    const val SPACE = " "
 }

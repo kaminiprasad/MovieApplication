@@ -37,7 +37,7 @@ import com.movie.app.presentation.ui.theme.SIZE_150_DP
 import com.movie.app.presentation.ui.theme.VERY_VERY_TINY_SIZE
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants
-import com.movie.app.presentation.ui.util.Constants.EMPTY_STRING
+import com.movie.app.presentation.ui.util.Constants.SPACE
 import com.movie.app.presentation.ui.util.roundOff
 
 @ExperimentalCoilApi
@@ -108,7 +108,7 @@ fun PopularMoviesItem(
                         .size(DEFAULT_PADDING_EXTRA_LARGE_SIZE),
                 )
                 Text(
-                    text = popular.voteAverage.roundOff().plus(EMPTY_STRING).plus(stringResource(R.string.imdb)),
+                    text = popular.voteAverage.roundOff().plus(SPACE).plus(stringResource(R.string.imdb)),
                     modifier = Modifier.padding(
                         top = DEFAULT_PADDING_LARGE_SIZE,
                         start = DEFAULT_PADDING_VERY_VERY_SMALL_SIZE,
