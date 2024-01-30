@@ -7,7 +7,6 @@ import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
 import io.mockk.* // ktlint-disable no-wildcard-imports
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.* // ktlint-disable no-wildcard-imports
 import org.junit.* // ktlint-disable no-wildcard-imports
@@ -36,15 +35,13 @@ class PopularMoviesViewModelTest {
 
             // When
             val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
-            viewModel.getMovieList()
+            viewModel.getMovieList().join()
 
             // Then
-            viewModel.movieState.collectLatest {
-                if (it.isEmpty().not()) {
-                    assert(it.first().title == TROLLS_BAND_TOGETHER)
-                    assert(it.first().voteAverage == TROLLS_VOTE_AVERAGE)
-                }
-            }
+            val result = viewModel.movieState.value
+            Assert.assertTrue(result.isEmpty().not())
+            assert(result.first().title == TROLLS_BAND_TOGETHER)
+            assert(result.first().voteAverage == TROLLS_VOTE_AVERAGE)
         }
 
     @After

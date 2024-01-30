@@ -76,8 +76,8 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    internal fun movieCredit(movieId: Int) {
-        viewModelScope.launch {
+    internal fun movieCredit(movieId: Int) =
+        viewModelScope.launch(contextProvider.IO) {
             movieArtist(movieId).collectLatest {
                 when (it) {
                     is Result.Loading -> {
@@ -102,7 +102,6 @@ class MovieDetailViewModel @Inject constructor(
                     else -> {}
                 }
             }
-        }
     }
 
     fun loadMovieDetailData() {

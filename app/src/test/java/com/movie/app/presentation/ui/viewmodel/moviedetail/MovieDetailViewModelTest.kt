@@ -27,7 +27,6 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -35,6 +34,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -72,14 +72,13 @@ class MovieDetailViewModelTest {
                 movieArtist = artistUseCase,
                 savedStateHandle = savedStateHandle,
             )
-            viewModel.getMovieById(MOVIE_ARTIST_ID.toInt())
+            viewModel.getMovieById(MOVIE_ARTIST_ID.toInt()).join()
 
             // Then
-            viewModel.movieState.collectLatest {
-                assert(it.movie?.originalTitle == MOVIE_DETAIL_TITLE)
-                assert(it.movie?.title == MOVIE_DETAIL_TITLE)
-                assert(it.movie?.voteAverage == MOVIE_DETAIL_VOTE_AVERAGE)
-            }
+            val result = viewModel.movieState.value
+            assert(result.movie?.originalTitle == MOVIE_DETAIL_TITLE)
+            assert(result.movie?.title == MOVIE_DETAIL_TITLE)
+            assert(result.movie?.voteAverage == MOVIE_DETAIL_VOTE_AVERAGE)
         }
 
     @Test
@@ -109,17 +108,16 @@ class MovieDetailViewModelTest {
                 movieArtist = artistUseCase,
                 savedStateHandle = savedStateHandle,
             )
-            viewModel.movieCredit(MOVIE_ARTIST_ID.toInt())
+            viewModel.movieCredit(MOVIE_ARTIST_ID.toInt()).join()
 
             // Then
-            viewModel.artistState.collectLatest {
-                if (it.cast.isEmpty().not() && it.crew.isEmpty().not()) {
-                    assert(it.cast.first().name == MIKE_KELSON)
-                    assert(it.cast.first().profilePath == MIKE_KELSON_PROFILE_PATH)
-                    assert(it.crew.first().name == SCOTT_CHAMBERS)
-                    assert(it.crew.first().profilePath == SCOTT_CHAMBERS_PROFILE_PATH)
-                }
-            }
+            val result = viewModel.artistState.value
+            Assert.assertTrue(result.cast.isEmpty().not())
+            Assert.assertTrue(result.crew.isEmpty().not())
+            assert(result.cast.first().name == MIKE_KELSON)
+            assert(result.cast.first().profilePath == MIKE_KELSON_PROFILE_PATH)
+            assert(result.crew.first().name == SCOTT_CHAMBERS)
+            assert(result.crew.first().profilePath == SCOTT_CHAMBERS_PROFILE_PATH)
         }
 
     @After
