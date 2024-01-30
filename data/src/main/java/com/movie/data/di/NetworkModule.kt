@@ -5,13 +5,6 @@ import com.movie.data.repository.RepositoryImpl
 import com.movie.data.repository.datasource.RemoteDataSource
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
-import com.movie.domain.repository.Repository
-import com.movie.domain.usecase.artist.MovieArtistUseCase
-import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
-import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
-import com.movie.domain.usecase.moviedetail.MovieDetailsUseCaseImpl
-import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
-import com.movie.domain.usecase.popularmovie.PopularMovieUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -81,18 +74,4 @@ class NetworkModule {
         remoteDataSource = remoteDataSource,
     )
 
-    @Provides
-    fun provideMovieUseCase(repository: Repository): PopularMovieUseCase {
-        return PopularMovieUseCaseImpl(repository)
-    }
-
-    @Provides
-    fun provideMovieDetailsUseCase(repository: Repository): MovieDetailsUseCase {
-        return MovieDetailsUseCaseImpl(repository)
-    }
-
-    @Provides
-    fun provideMovieArtistUseCase(repository: Repository): MovieArtistUseCase {
-        return MovieArtistUseCaseImpl(repository)
-    }
 }
