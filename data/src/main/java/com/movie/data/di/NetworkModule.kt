@@ -1,16 +1,11 @@
 package com.movie.data.di
 
-import com.movie.data.api.ApiService
-import com.movie.data.repository.RepositoryImpl
-import com.movie.data.repository.datasource.RemoteDataSource
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -57,21 +52,4 @@ class NetworkModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
-
-    @Provides
-    fun provideApiService(retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
-
-    @Provides
-    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.IO
-
-    @Provides
-    fun provideRepository(
-        ioDispatcher: CoroutineDispatcher,
-        remoteDataSource: RemoteDataSource,
-    ) = RepositoryImpl(
-        dispatcher = ioDispatcher,
-        remoteDataSource = remoteDataSource,
-    )
-
 }

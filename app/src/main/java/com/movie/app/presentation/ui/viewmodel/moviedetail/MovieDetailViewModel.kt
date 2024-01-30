@@ -102,7 +102,7 @@ class MovieDetailViewModel @Inject constructor(
                     else -> {}
                 }
             }
-    }
+        }
 
     fun loadMovieDetailData() {
         savedStateHandle.get<String>(MOVIE_ID)?.let {
