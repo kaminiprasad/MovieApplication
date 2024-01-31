@@ -1,5 +1,6 @@
 package com.movie.data.di
 
+import com.movie.data.BuildConfig
 import com.movie.data.util.Constants
 import com.movie.data.util.RequestInterceptor
 import dagger.Module
@@ -32,10 +33,12 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.HEADERS)
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY.takeIf { BuildConfig.DEBUG }
+                ?: HttpLoggingInterceptor.Level.NONE
+        }
+    }
 
     @Provides
     fun provideConverterFactory(): GsonConverterFactory =

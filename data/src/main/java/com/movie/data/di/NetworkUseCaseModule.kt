@@ -1,8 +1,12 @@
 package com.movie.data.di
 
 import com.movie.data.api.ApiService
+import com.movie.data.mapper.mapperimpl.ArtistMapperImpl
+import com.movie.data.mapper.mapperimpl.MovieDetailMapperImpl
+import com.movie.data.mapper.mapperimpl.MovieListMapperImpl
 import com.movie.data.repository.RepositoryImpl
 import com.movie.data.repository.datasource.RemoteDataSource
+import com.movie.data.repository.datasourceimpl.RemoteDataSourceImpl
 import com.movie.domain.repository.Repository
 import com.movie.domain.usecase.artist.MovieArtistUseCase
 import com.movie.domain.usecase.artist.MovieArtistUseCaseImpl
@@ -32,7 +36,7 @@ class NetworkUseCaseModule {
     fun provideRepository(
         ioDispatcher: CoroutineDispatcher,
         remoteDataSource: RemoteDataSource,
-    ) = RepositoryImpl(
+    ): Repository = RepositoryImpl(
         dispatcher = ioDispatcher,
         remoteDataSource = remoteDataSource,
     )
@@ -50,5 +54,15 @@ class NetworkUseCaseModule {
     @Provides
     fun provideMovieArtistUseCase(repository: Repository): MovieArtistUseCase {
         return MovieArtistUseCaseImpl(repository)
+    }
+
+    @Provides
+    fun provideRemoteDataSource(
+        apiService: ApiService,
+        listMapper: MovieListMapperImpl,
+        movieDetailMapper: MovieDetailMapperImpl,
+        artistMapper: ArtistMapperImpl,
+    ): RemoteDataSource {
+        return RemoteDataSourceImpl(apiService, listMapper, movieDetailMapper, artistMapper)
     }
 }
