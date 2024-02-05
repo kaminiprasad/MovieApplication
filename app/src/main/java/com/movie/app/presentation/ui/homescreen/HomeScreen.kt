@@ -8,12 +8,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -22,7 +22,6 @@ import com.movie.app.presentation.navigation.Screen
 import com.movie.app.presentation.ui.compose.CircularProgressBar
 import com.movie.app.presentation.ui.compose.ConnectivityStatus
 import com.movie.app.presentation.ui.compose.ErrorComponent
-import com.movie.app.presentation.ui.util.connectivityState
 import com.movie.app.presentation.ui.viewmodel.popularmovie.PopularMoviesViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -31,13 +30,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoilApi
 @Composable
 fun HomeScreen(
-    navController: NavController,
+    onMovieItemClick: (String) -> Unit,
     viewModel: PopularMoviesViewModel = hiltViewModel(),
 ) {
+    val progressBar = remember {
+        mutableStateOf(false)
+    }
     val result = viewModel.movieState.collectAsState()
     val status = viewModel.loadingState.collectAsState()
 
-    val state by connectivityState()
     SwipeRefresh(
         state = rememberSwipeRefreshState(status.value),
         onRefresh = { viewModel.loadMovieData() },
@@ -47,7 +48,7 @@ fun HomeScreen(
                 .fillMaxSize(),
         ) {
             CircularProgressBar(
-                isDisplayed = status.value,
+                isDisplayed = progressBar.value,
                 modifier = Modifier.testTag(stringResource(R.string.tag_progress_bar)),
             )
             ErrorComponent()
@@ -62,13 +63,13 @@ fun HomeScreen(
                         PopularMoviesItem(
                             popular = item,
                             onClick = {
-                                navController.navigate(Screen.MovieItemDetail.route + "/${item.id}")
+                                onMovieItemClick(Screen.MovieItemDetail.route + "/${item.id}")
                             },
                         )
                     },
                 )
             }
-            ConnectivityStatus(connection = state, onRefresh = { viewModel.loadMovieData() })
+            ConnectivityStatus(onRefresh = { viewModel.loadMovieData() })
         }
     }
 }

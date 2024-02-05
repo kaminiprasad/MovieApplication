@@ -1,30 +1,12 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'org.jetbrains.kotlin.android'
+    id 'java-library'
+    id 'kotlin'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
-android {
-    compileSdk = libs.versions.getCompileSdk().get().toInteger()
-
-    defaultConfig {
-        minSdk libs.versions.getMinSdk().get().toInteger()
-        targetSdk libs.versions.getTargetSdk().get().toInteger()
-        versionCode libs.versions.getVersionCode().get().toInteger()
-        versionName libs.versions.getVersionName().get().toString()
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
 }
 
 dependencies {
@@ -32,10 +14,8 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
-    implementation(libs.dagger.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.lifecycle.viewmodel)
-    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.google.dagger.hilt.core)
+    implementation(libs.google.dagger.hilt.compiler)
 
     //Testing
     testImplementation(libs.android.test.junit)

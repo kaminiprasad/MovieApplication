@@ -44,7 +44,6 @@ import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_VERY_VERY_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.SIZE_240_DP
 import com.movie.app.presentation.ui.theme.ratingStarColor
 import com.movie.app.presentation.ui.util.Constants.IMAGE_URL
-import com.movie.app.presentation.ui.util.connectivityState
 import com.movie.app.presentation.ui.util.roundOff
 import com.movie.app.presentation.ui.viewmodel.moviedetail.MovieDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -62,7 +61,6 @@ fun MovieDetailScreen(
     val artist = movieDetailViewModel.artistState.collectAsState()
 
     val status = movieDetailViewModel.loadingState.collectAsState()
-    val state by connectivityState()
     SwipeRefresh(
         state = rememberSwipeRefreshState(status.value),
         onRefresh = { movieDetailViewModel.loadMovieDetailData() },
@@ -200,7 +198,7 @@ fun MovieDetailScreen(
                     }
                 }
             }
-            ConnectivityStatus(connection = state, onRefresh = { movieDetailViewModel.loadMovieDetailData() })
+            ConnectivityStatus(onRefresh = { movieDetailViewModel.loadMovieDetailData() })
         }
     }
 }

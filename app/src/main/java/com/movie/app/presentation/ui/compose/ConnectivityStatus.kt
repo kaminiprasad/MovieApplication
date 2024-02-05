@@ -9,6 +9,7 @@ import androidx.compose.runtime.* // ktlint-disable no-wildcard-imports
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.movie.app.R
@@ -16,16 +17,15 @@ import com.movie.app.presentation.ui.theme.DEFAULT_FONT_EXTRA_LARGE_SIZE
 import com.movie.app.presentation.ui.theme.DEFAULT_PADDING_SMALL_SIZE
 import com.movie.app.presentation.ui.theme.green
 import com.movie.app.presentation.ui.theme.red
-import com.movie.app.presentation.ui.util.ConnectionState
+import com.movie.app.presentation.ui.util.isInternetConnectionAvailable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 
 @ExperimentalAnimationApi
 @ExperimentalCoroutinesApi
 @Composable
-fun ConnectivityStatus(connection: ConnectionState, onRefresh: () -> Unit) {
+fun ConnectivityStatus(onRefresh: () -> Unit) {
     val updatedOnRefresh = rememberUpdatedState(onRefresh)
-    val isConnected = connection === ConnectionState.Available
+    val isConnected = LocalContext.current.isInternetConnectionAvailable()
     var visibility by remember { mutableStateOf(false) }
 
     AnimatedVisibility(
@@ -37,12 +37,11 @@ fun ConnectivityStatus(connection: ConnectionState, onRefresh: () -> Unit) {
     }
 
     LaunchedEffect(isConnected) {
-        if (!isConnected) {
-            visibility = true
-        } else {
-            delay(2000)
+        if (isConnected) {
             visibility = false
             updatedOnRefresh.value.invoke()
+        } else {
+            visibility = true
         }
     }
 }

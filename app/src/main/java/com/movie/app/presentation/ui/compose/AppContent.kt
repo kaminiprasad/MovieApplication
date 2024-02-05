@@ -11,15 +11,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import coil.annotation.ExperimentalCoilApi
 import com.movie.app.R
 import com.movie.app.presentation.navigation.NavGraphs
+import com.movie.app.presentation.ui.theme.materialBlue700
 import com.movie.app.presentation.ui.util.isMovieDetailPage
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
+@ExperimentalCoilApi
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @Composable
 fun AppContent(navHostController: NavHostController) {
-    val materialBlue700 = Color(0xFF4321D2)
     val scaffoldState = rememberScaffoldState()
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     Scaffold(

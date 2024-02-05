@@ -1,8 +1,6 @@
 package com.movie.domain.extension
 
-sealed class Result<out T> {
-    object Loading : Result<Nothing>()
-    object Empty : Result<Nothing>()
-    data class Success<out T>(val data: T) : Result<T>()
-    data class Error(val error: String) : Result<Nothing>()
+sealed class Result<T> {
+    data class Success<T>(val data: T) : Result<T>()
+    data class Error<T>(val error: String) : Result<T>()
 }

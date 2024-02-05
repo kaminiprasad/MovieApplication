@@ -2,7 +2,7 @@
 applicationId = "com.movie.app"
 compileSdk = "31"
 kotlinGradlePluginVersion = "1.5.30"
-minSdk = "21"
+minSdk = "23"
 targetSdk = "31"
 versionCode = "1"
 versionName = "1.0"

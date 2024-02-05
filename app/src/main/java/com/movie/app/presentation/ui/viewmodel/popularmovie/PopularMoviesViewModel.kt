@@ -11,8 +11,8 @@ import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,25 +33,22 @@ class PopularMoviesViewModel @Inject constructor(
     val errorState: StateFlow<String> = _errorState
 
     @VisibleForTesting
-    internal fun getMovieList() = viewModelScope.launch(coroutineContextProvider.IO) {
-        movieUseCase().collectLatest {
-            when (it) {
-                is Result.Loading -> {
-                    _loadingState.value = true
-                }
+    internal fun getMovieList() {
+        _loadingState.value = true
+        viewModelScope.launch {
+            movieUseCase().also {
+                when (it) {
+                    is Result.Success -> {
+                        _loadingState.value = false
+                        _movieState.value = withContext(coroutineContextProvider.IO) {
+                            presentationMovieListMapperImpl.map(it.data)
+                        }
+                    }
 
-                is Result.Success -> {
-                    _loadingState.value = false
-                    _movieState.value = presentationMovieListMapperImpl.map(it.data)
-                }
-
-                is Result.Error -> {
-                    _loadingState.value = false
-                    _errorState.value = it.error
-                }
-
-                is Result.Empty -> {
-                    // No implementation
+                    is Result.Error -> {
+                        _loadingState.value = false
+                        _errorState.value = it.error
+                    }
                 }
             }
         }

@@ -1,15 +1,26 @@
 package com.movie.app.presentation.ui.viewmodel.popularmovie
 
 import com.movie.app.presentation.ui.mapper.DomainMovieToPresentationMapperImpl
-import com.movie.app.utils.* // ktlint-disable no-wildcard-imports
+import com.movie.app.utils.TROLLS_BAND_TOGETHER
+import com.movie.app.utils.TROLLS_VOTE_AVERAGE
+import com.movie.app.utils.getPopularMovies
+import com.movie.app.utils.getPopularMoviesPresentation
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
-import io.mockk.* // ktlint-disable no-wildcard-imports
+import io.mockk.clearAllMocks
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.* // ktlint-disable no-wildcard-imports
-import org.junit.* // ktlint-disable no-wildcard-imports
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class PopularMoviesViewModelTest {
@@ -25,24 +36,25 @@ class PopularMoviesViewModelTest {
     }
 
     @Test
-    fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() =
+    fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() {
+        // Given
+        val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
+        val expectedResult = Result.Success(getPopularMovies())
+        coEvery { useCase() } returns expectedResult
+
+        coEvery { mapperImpl.map(getPopularMovies()) } returns getPopularMoviesPresentation()
+
+        // When
         runTest {
-            // Given
-            val expectedResult = Result.Success(getPopularMovies())
-            coEvery { useCase() } returns flowOf(expectedResult)
-
-            coEvery { mapperImpl.map(getPopularMovies()) } returns getPopularMoviesPresentation()
-
-            // When
-            val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
-            viewModel.getMovieList().join()
-
-            // Then
-            val result = viewModel.movieState.value
-            Assert.assertTrue(result.isEmpty().not())
-            assert(result.first().title == TROLLS_BAND_TOGETHER)
-            assert(result.first().voteAverage == TROLLS_VOTE_AVERAGE)
+            viewModel.getMovieList()
         }
+
+        // Then
+        val result = viewModel.movieState.value
+        Assert.assertTrue(result.isEmpty().not())
+        assert(result.first().title == TROLLS_BAND_TOGETHER)
+        assert(result.first().voteAverage == TROLLS_VOTE_AVERAGE)
+    }
 
     @After
     fun tearDown() {

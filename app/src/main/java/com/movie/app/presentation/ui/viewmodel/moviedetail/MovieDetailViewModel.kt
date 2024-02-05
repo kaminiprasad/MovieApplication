@@ -15,8 +15,8 @@ import com.movie.domain.usecase.moviedetail.MovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,48 +49,43 @@ class MovieDetailViewModel @Inject constructor(
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> = _errorState
 
-    internal fun getMovieById(id: Int) = viewModelScope.launch(contextProvider.IO) {
-        movieDetails(id = id).collectLatest {
+    internal fun getMovieById(id: Int) = viewModelScope.launch {
+        _loadingState.value = true
+        movieDetails(id = id).also {
             when (it) {
-                is Result.Loading -> {
-                    _loadingState.value = true
-                }
-
                 is Result.Success -> {
                     _loadingState.value = false
-                    _movieState.value = MovieDetailState(
-                        movie = mapperImpl.map(it.data),
-                        isLoading = false,
-                        error = "",
-                    )
+                    _movieState.value = withContext(contextProvider.IO) {
+                        MovieDetailState(
+                            movie = mapperImpl.map(it.data),
+                            isLoading = false,
+                            error = "",
+                        )
+                    }
                 }
 
                 is Result.Error -> {
-                    _loadingState.value = true
+                    _loadingState.value = false
                     _errorState.value = it.error
                     _movieState.value = MovieDetailState(error = it.error)
                 }
-
-                else -> {}
             }
         }
     }
 
     internal fun movieCredit(movieId: Int) =
-        viewModelScope.launch(contextProvider.IO) {
-            movieArtist(movieId).collectLatest {
+        viewModelScope.launch {
+            _loadingState.value = true
+            movieArtist(movieId).also {
                 when (it) {
-                    is Result.Loading -> {
-                        _loadingState.value = true
-                    }
-
                     is Result.Success -> {
                         _loadingState.value = false
-                        _artistState.value = artistMapperImpl.map(it.data)
+                        _artistState.value =
+                            withContext(contextProvider.IO) { artistMapperImpl.map(it.data) }
                     }
 
                     is Result.Error -> {
-                        _loadingState.value = true
+                        _loadingState.value = false
                         _errorState.value = it.error
                         _artistState.value = DomainArtistToPresentationModel(
                             cast = emptyList(),
@@ -98,8 +93,6 @@ class MovieDetailViewModel @Inject constructor(
                             id = -1
                         )
                     }
-
-                    else -> {}
                 }
             }
         }
