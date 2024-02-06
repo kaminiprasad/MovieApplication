@@ -25,14 +25,14 @@ class MovieDetailsUseCaseTest {
     @Test
     fun `GIVEN a movie WHEN the movie detail's of particular movie is requested THEN the movie's details will be returned`() =
         runTest {
-            //Given
+            // Given
             val expectedList = movieRepository.getMovieById(ARTIST_ID)
             coEvery { movieDetailUseCase(ARTIST_ID) } returns expectedList
 
-            //when
+            // when
             val actualData = movieDetailUseCase(ARTIST_ID)
 
-            //Then
+            // Then
             Assert.assertEquals(actualData, actualData)
             Assert.assertEquals(MOVIE_DETAIL_TITLE, expectedList.data.title)
             Assert.assertTrue(MOVIE_DETAIL_VOTE_COUNT == expectedList.data.voteCount)

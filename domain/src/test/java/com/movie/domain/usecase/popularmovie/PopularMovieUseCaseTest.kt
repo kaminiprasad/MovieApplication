@@ -27,14 +27,14 @@ class PopularMovieUseCaseTest {
     @Test
     fun `GIVEN a popular movie WHEN the movie list are requested THEN the details of the first popular movie in the movie list's data will be returned`() =
         runTest {
-            //Given
+            // Given
             val expectedList = movieRepository.getPopularMovies()
             coEvery { popularMoviesUseCase() } returns expectedList
 
-            //when
+            // when
             val actualData = popularMoviesUseCase()
 
-            //Then
+            // Then
             Assert.assertEquals(actualData, expectedList)
             Assert.assertEquals(TROLLS_BAND_TOGETHER, expectedList.data.first().originalTitle)
             Assert.assertTrue(TROLLS_VOTE_AVERAGE == expectedList.data.first().voteAverage)
@@ -43,14 +43,14 @@ class PopularMovieUseCaseTest {
     @Test
     fun `GIVEN a popular movie WHEN the movie list are requested THEN the details of the last popular movie item in the list's data will be returned`() =
         runTest {
-            //Given
+            // Given
             val expectedList = movieRepository.getPopularMovies()
             coEvery { popularMoviesUseCase() } returns expectedList
 
-            //when
+            // when
             val actualData = popularMoviesUseCase()
 
-            //Then
+            // Then
             Assert.assertEquals(actualData, expectedList)
             Assert.assertEquals(FREELANCE_TITLE, expectedList.data.last().originalTitle)
             Assert.assertEquals(FREELANCE_RELEASE_DATE, expectedList.data.last().releaseDate)

@@ -27,14 +27,14 @@ class MovieArtistUseCaseTest {
     @Test
     fun `GIVEN a movie artist WHEN the movie detail's of an artis is requested THEN the artist's detail will be returned`() =
         runTest {
-            //Given
+            // Given
             val expectedList = movieRepository.getMovieCredit(ARTIST_ID)
             coEvery { movieDetailUseCase(ARTIST_ID) } returns expectedList
 
-            //when
+            // when
             val artistData = movieDetailUseCase(ARTIST_ID)
 
-            //Then
+            // Then
             Assert.assertEquals(artistData, expectedList)
             Assert.assertEquals(MIKE_KELSON, expectedList.data.cast.first().name)
             Assert.assertTrue(MIKE_KELSON_POPULARITY == expectedList.data.cast.first().popularity)
