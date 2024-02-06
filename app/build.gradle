@@ -11,9 +11,6 @@ android {
     defaultConfig {
         applicationId libs.versions.getApplicationId().get().toString()
         minSdk libs.versions.getMinSdk().get().toInteger()
-        targetSdk libs.versions.getTargetSdk().get().toInteger()
-        versionCode libs.versions.getVersionCode().get().toInteger()
-        versionName libs.versions.getVersionName().get().toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,21 +25,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.getComposeVersion().get().toString()
-    }
     packagingOptions {
         exclude 'META-INF/gradle/incremental.annotation.processors'
-    }
-    lintOptions {
-        disable 'InvalidPackage'
-        checkReleaseBuilds false
     }
 }
 
@@ -50,31 +34,13 @@ dependencies {
 
     implementation project(path: ':data')
     implementation project(path: ':domain')
+    implementation project(path: ':presentation')
 
     implementation(libs.ktJdk)
-    implementation(libs.compose.compiler)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.appcompat)
     implementation(libs.google.material)
-    implementation(libs.compose.ui.android)
-    implementation(libs.compose.material)
-    implementation(libs.compose.tool.preview)
-    implementation(libs.swipe.refresh)
-    implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.activity.compose)
-
-    implementation(libs.androidx.lifecycle.livedata)
-    // Compose dependencies
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.compose.material.icon)
     implementation(libs.androidx.hilt.navigation.compose)
-
-    // Coroutines
-    implementation(libs.coroutines.core)
-    implementation(libs.coroutines.android)
 
     //Dagger - Hilt
     implementation(libs.dagger.hilt.android)
@@ -87,29 +53,4 @@ dependencies {
     implementation(libs.okhttp.log.interceptor)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
-    // Testing
-    implementation(libs.androidx.test.core)
-    testImplementation(libs.android.test.junit)
-    testImplementation(libs.android.io.mockk)
-    testImplementation(libs.android.google.truth)
-    testImplementation(libs.androidx.arch.core.test)
-    testImplementation(libs.androidx.compose.test.junit)
-
-    // Instrumented Unit Tests
-    androidTestImplementation(libs.android.test.junit)
-    androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.androidx.arch.core.test)
-    androidTestImplementation(libs.android.google.truth)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
-    androidTestImplementation(libs.android.mockito.core)
-    androidTestImplementation(libs.androidx.compose.test.junit)
-    debugImplementation(libs.androidx.compose.test.manifest)
-    debugImplementation(libs.compose.ui.tool)
-    testImplementation (libs.kotlin.coroutines.test) {
-        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
-    }
-    testImplementation(libs.mockito.inline)
-
 }

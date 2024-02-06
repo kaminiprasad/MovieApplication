@@ -5,8 +5,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {
@@ -23,5 +23,9 @@ dependencies {
     testImplementation(libs.android.arch.core.test)
 // For Robolectric tests.
     testImplementation(libs.google.dagger.hilt.android.testing)
-
+    testImplementation(libs.android.io.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation (libs.kotlin.coroutines.test) {
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
 }

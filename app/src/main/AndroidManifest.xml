@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp" >
     <activity
-        android:name="com.movie.app.presentation.ui.MainActivity"
+        android:name="com.movie.presentation.ui.MainActivity"
         android:exported="true"
         android:theme="@style/Theme.MovieApp.NoActionBar">
         <intent-filter>

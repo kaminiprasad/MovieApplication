@@ -1,4 +1,5 @@
 [versions]
+presentationNamespace = "com.movie.presentation"
 applicationId = "com.movie.app"
 compileSdk = "31"
 kotlinGradlePluginVersion = "1.5.30"

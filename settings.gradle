@@ -9,3 +9,4 @@ rootProject.name = "Movie App"
 include ':app'
 include ':domain'
 include ':data'
+include ':presentation'
