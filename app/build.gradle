@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace "com.movie.app"
     compileSdk = libs.versions.getCompileSdk().get().toInteger()
 
     defaultConfig {

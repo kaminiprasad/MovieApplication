@@ -2,14 +2,14 @@
 presentationNamespace = "com.movie.presentation"
 applicationId = "com.movie.app"
 compileSdk = "31"
-kotlinGradlePluginVersion = "1.5.30"
+kotlinGradlePluginVersion = "1.6.10"
 minSdk = "23"
 targetSdk = "31"
 versionCode = "1"
 versionName = "1.0"
-composeVersion = '1.0.3'
+composeVersion = '1.1.1'
 hiltAndroidVersion = '2.38.1'
-gradleVersion = '7.0.3'
+gradleVersion = "8.2.1"
 kotlinLintVersion = "10.0.0"
 
 kotlinJDK = "1.5.30"
