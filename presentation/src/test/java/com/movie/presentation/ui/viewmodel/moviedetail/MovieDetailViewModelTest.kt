@@ -1,6 +1,7 @@
 package com.movie.presentation.ui.viewmodel.moviedetail
 
 import androidx.lifecycle.SavedStateHandle
+import com.movie.data.util.Constants
 import com.movie.domain.entity.artist.Artist
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.artist.MovieArtistUseCase
@@ -71,13 +72,13 @@ class MovieDetailViewModelTest {
         // Given
         val expectedResult = Result.Success(getMovieDetail())
         coEvery { movieDetailUseCase(MOVIE_ARTIST_ID.toInt()) } returns expectedResult
-
+        coEvery { artistUseCase(MOVIE_ARTIST_ID.toInt()) } returns Result.Error(Constants.EXCEPTION_UNKNOWN_ERROR)
         coEvery { mapper.map(getMovieDetail()) } returns getMovieDetailPresentation()
         coEvery { contextProvider.IO } returns testDispatcher
 
         // When
         runTest {
-            viewModel.getMovieById(MOVIE_ARTIST_ID.toInt())
+            viewModel.loadMovieDetailData()
         }
 
         // Then
@@ -103,13 +104,14 @@ class MovieDetailViewModelTest {
 
         val expectedResult = Result.Success(movieArtist)
         coEvery { artistUseCase(MOVIE_ARTIST_ID.toInt()) } returns expectedResult
+        coEvery { movieDetailUseCase(MOVIE_ARTIST_ID.toInt()) } returns Result.Error(Constants.EXCEPTION_UNKNOWN_ERROR)
 
         coEvery { artistMapper.map(movieArtist) } returns movieArtistPresentation
         coEvery { contextProvider.IO } returns testDispatcher
 
         // When
         runTest {
-            viewModel.movieCredit(MOVIE_ARTIST_ID.toInt())
+            viewModel.loadMovieDetailData()
         }
 
         // Then

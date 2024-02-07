@@ -1,5 +1,6 @@
 package com.movie.presentation.ui.viewmodel.moviedetail
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,8 @@ import com.movie.presentation.ui.model.DomainArtistToPresentationModel
 import com.movie.presentation.ui.util.Constants.MOVIE_ID
 import com.movie.presentation.ui.util.CoroutineContextProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -49,7 +52,7 @@ class MovieDetailViewModel @Inject constructor(
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> = _errorState
 
-    internal fun getMovieById(id: Int) = viewModelScope.launch {
+    private suspend fun getMovieById(id: Int) {
         _loadingState.value = true
         movieDetails(id = id).also {
             when (it) {
@@ -73,34 +76,39 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    internal fun movieCredit(movieId: Int) =
-        viewModelScope.launch {
-            _loadingState.value = true
-            movieArtist(movieId).also {
-                when (it) {
-                    is Result.Success -> {
-                        _loadingState.value = false
-                        _artistState.value =
-                            withContext(contextProvider.IO) { artistMapperImpl.map(it.data) }
-                    }
+    private suspend fun movieCredit(movieId: Int) {
+        _loadingState.value = true
+        movieArtist(movieId).also {
+            when (it) {
+                is Result.Success -> {
+                    _loadingState.value = false
+                    _artistState.value =
+                        withContext(contextProvider.IO) { artistMapperImpl.map(it.data) }
+                }
 
-                    is Result.Error -> {
-                        _loadingState.value = false
-                        _errorState.value = it.error
-                        _artistState.value = DomainArtistToPresentationModel(
-                            cast = emptyList(),
-                            crew = emptyList(),
-                            id = -1
-                        )
-                    }
+                is Result.Error -> {
+                    _loadingState.value = false
+                    _errorState.value = it.error
+                    _artistState.value = DomainArtistToPresentationModel(
+                        cast = emptyList(),
+                        crew = emptyList(),
+                        id = -1
+                    )
                 }
             }
         }
+    }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun loadMovieDetailData() {
-        savedStateHandle.get<String>(MOVIE_ID)?.let {
-            getMovieById(it.toInt())
-            movieCredit(it.toInt())
+        viewModelScope.launch {
+            savedStateHandle.get<String>(MOVIE_ID)?.let {
+                val mergedResponse = listOf(
+                    async { getMovieById(it.toInt()) },
+                    async { movieCredit(it.toInt()) }
+                )
+                mergedResponse.awaitAll()
+            }
         }
     }
 }
