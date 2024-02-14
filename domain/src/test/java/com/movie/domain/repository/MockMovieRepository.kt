@@ -2,7 +2,6 @@ package com.movie.domain.repository
 
 import com.movie.domain.extension.Result
 import com.movie.domain.getMovieDetail
-import com.movie.domain.movieArtist
 import com.movie.domain.popularMovies
 
 class MockMovieRepository : Repository {
@@ -11,7 +10,4 @@ class MockMovieRepository : Repository {
 
     override suspend fun getMovieById(id: Int) =
         Result.Success(getMovieDetail())
-
-    override suspend fun getMovieCredit(movieId: Int) =
-        Result.Success(movieArtist)
 }

@@ -1,7 +1,7 @@
 package com.movie.presentation.ui.mapper
 
 import com.movie.data.mapper.ListMapper
-import com.movie.data.util.notNull
+import com.movie.data.util.notEmpty
 import com.movie.domain.entity.movie.Movie
 import com.movie.presentation.ui.model.DomainMovieToPresentationModel
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class DomainMovieToPresentationMapperImpl @Inject constructor() :
                     originalTitle = originalTitle,
                     posterUrl = posterUrl,
                     voteAverage = voteAverage,
-                    releaseDate = releaseDate.notNull(),
+                    releaseDate = releaseDate.notEmpty(),
                 )
             }
         }

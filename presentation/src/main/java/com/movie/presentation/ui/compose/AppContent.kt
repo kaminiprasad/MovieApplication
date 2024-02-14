@@ -24,10 +24,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
 @Composable
 fun AppContent(navHostController: NavHostController) {
-    val scaffoldState = rememberScaffoldState()
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     Scaffold(
-        scaffoldState = scaffoldState,
+        scaffoldState = rememberScaffoldState(),
         topBar = {
             TopAppBar(
                 navigationIcon = if (navBackStackEntry.isMovieDetailPage()

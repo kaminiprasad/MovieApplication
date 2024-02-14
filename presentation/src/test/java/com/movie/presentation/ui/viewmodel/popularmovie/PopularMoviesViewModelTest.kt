@@ -3,6 +3,7 @@ package com.movie.presentation.ui.viewmodel.popularmovie
 import com.movie.domain.extension.Result
 import com.movie.domain.usecase.popularmovie.PopularMovieUseCase
 import com.movie.presentation.ui.mapper.DomainMovieToPresentationMapperImpl
+import com.movie.presentation.ui.model.MoviesLoaded
 import com.movie.presentation.utils.TROLLS_BAND_TOGETHER
 import com.movie.presentation.utils.TROLLS_VOTE_AVERAGE
 import com.movie.presentation.utils.getPopularMovies
@@ -38,12 +39,11 @@ class PopularMoviesViewModelTest {
     @Test
     fun `GIVEN list of movies as input WHEN movie items are requested THEN the movie list is returned`() {
         // Given
-        val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
         val expectedResult = Result.Success(getPopularMovies())
         coEvery { useCase() } returns expectedResult
-
         coEvery { mapperImpl.map(getPopularMovies()) } returns getPopularMoviesPresentation()
 
+        val viewModel = PopularMoviesViewModel(mapperImpl, useCase)
         // When
         runTest {
             viewModel.getMovieList()
@@ -51,9 +51,10 @@ class PopularMoviesViewModelTest {
 
         // Then
         val result = viewModel.movieState.value
-        Assert.assertTrue(result.isEmpty().not())
-        assert(result.first().title == TROLLS_BAND_TOGETHER)
-        assert(result.first().voteAverage == TROLLS_VOTE_AVERAGE)
+        result as MoviesLoaded
+        Assert.assertTrue(result.data.isEmpty().not())
+        assert(result.data.first().title == TROLLS_BAND_TOGETHER)
+        assert(result.data.first().voteAverage == TROLLS_VOTE_AVERAGE)
     }
 
     @After

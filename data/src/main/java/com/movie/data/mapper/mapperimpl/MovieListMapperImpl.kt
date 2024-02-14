@@ -2,7 +2,7 @@ package com.movie.data.mapper.mapperimpl
 
 import com.movie.data.mapper.ListMapper
 import com.movie.data.model.moviedetail.MovieDto
-import com.movie.data.util.notNull
+import com.movie.data.util.notEmpty
 import com.movie.domain.entity.movie.Movie
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class MovieListMapperImpl @Inject constructor() : ListMapper<MovieDto, Movie> {
                     backdropPath = backdropPath,
                     posterUrl = posterPath,
                     voteAverage = voteAverage,
-                    releaseDate = releaseDate.notNull(),
+                    releaseDate = releaseDate.notEmpty(),
                 )
             }
         }
