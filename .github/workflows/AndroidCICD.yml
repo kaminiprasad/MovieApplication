@@ -1,4 +1,4 @@
-name: CI
+name: pipeline
 on:
   push:
     branches: [ master, MoviewAppCleanArch ]
@@ -96,6 +96,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
+
+      - name: Build gradle project
+        run: ./gradlew build
 
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
