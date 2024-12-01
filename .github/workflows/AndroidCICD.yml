@@ -73,6 +73,7 @@ jobs:
 
   package:
     # needs: [static-code-analysis]
+    needs: [unit-test]
     name: Generate APK
     runs-on: ubuntu-latest
     steps:
