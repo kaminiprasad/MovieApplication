@@ -1,6 +1,8 @@
 package com.movie.data.mapper.mapperimpl
 
-import com.movie.data.* // ktlint-disable no-wildcard-imports
+import com.movie.data.MOVIE_DETAIL_BACKDROP_PATH
+import com.movie.data.MOVIE_DETAIL_TITLE
+import com.movie.data.getMovieDetailsDto
 import kotlinx.coroutines.ExperimentalCoroutinesApi // ktlint-disable no-wildcard-imports
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert

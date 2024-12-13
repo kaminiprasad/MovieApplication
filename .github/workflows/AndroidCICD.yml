@@ -1,9 +1,9 @@
 name: pipeline
 on:
   push:
-    branches: [ master, MoviewAppCleanArch ]
+    branches: [ master, MoviewAppCleanArch, CICDWorkFlow ]
   pull_request:
-    branches: [ master, MoviewAppCleanArch ]
+    branches: [ master, MoviewAppCleanArch, CICDWorkFlow ]
   workflow_dispatch:
 
 jobs:

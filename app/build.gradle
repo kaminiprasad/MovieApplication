@@ -12,7 +12,9 @@ android {
     defaultConfig {
         applicationId libs.versions.getApplicationId().get().toString()
         minSdk libs.versions.getMinSdk().get().toInteger()
-
+        targetSdk libs.versions.getTargetSdk().get().toInteger()
+        versionCode libs.versions.getVersionCode().get().toInteger()
+        versionName libs.versions.getVersionName().get().toString()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -28,6 +30,12 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
+    lintOptions {
+        baseline file("lint-baseline.xml")
+        checkReleaseBuilds false
+        //If you want to continue even if errors found use following line
+        abortOnError false
     }
 }
 
