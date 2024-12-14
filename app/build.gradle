@@ -33,6 +33,11 @@ android {
     }
     lintOptions {
         baseline file("lint-baseline.xml")
+        checkDependencies true
+        ignoreTestSources true
+        warningsAsErrors true
+        warning 'LintBaseline'
+        lintConfig file("lint.xml")
         checkReleaseBuilds false
         abortOnError false
         quiet true

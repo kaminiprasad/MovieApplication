@@ -1,4 +1,4 @@
-/*package com.movie.data.mapper.mapperimpl
+package com.movie.data.mapper.mapperimpl
 
 import com.movie.data.MOVIE_DETAIL_BACKDROP_PATH
 import com.movie.data.MOVIE_DETAIL_TITLE
@@ -23,4 +23,4 @@ class MovieDetailMapperImplTest {
         Assert.assertEquals(MOVIE_DETAIL_BACKDROP_PATH, movieDetail.backdropPath)
         Assert.assertEquals(MOVIE_DETAIL_TITLE, movieDetail.originalTitle)
     }
-}*/
+}
