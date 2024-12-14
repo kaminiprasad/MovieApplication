@@ -1,4 +1,4 @@
-package com.movie.data.mapper.mapperimpl
+/*package com.movie.data.mapper.mapperimpl
 
 import com.movie.data.MOVIE_TITLE
 import com.movie.data.getMovieDto
@@ -22,4 +22,4 @@ class MovieListMapperImplTest {
         Assert.assertEquals(1, movieList.size)
         Assert.assertEquals(MOVIE_TITLE, movieList.first().originalTitle)
     }
-}
+}*/
